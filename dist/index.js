@@ -6446,7 +6446,7 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
 }, c3 = {
   key: 1,
   class: "mt-3"
-}, d3 = { class: "query-builder-footer" }, f3 = { class: "query-builder-footer-fields" }, p3 = { class: "ml-auto mb-2" }, h3 = {
+}, d3 = { class: "query-builder-footer" }, f3 = { class: "query-builder-footer-fields" }, p3 = {
   __name: "CustomSegments",
   props: {
     segment: Object,
@@ -7070,9 +7070,7 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
               modelValue: w.value.description,
               "onUpdate:modelValue": T[12] || (T[12] = (R) => w.value.description = R),
               type: "text"
-            }, null, 8, ["modelValue"])
-          ]),
-          p("div", p3, [
+            }, null, 8, ["modelValue"]),
             H(C(et), {
               size: "small",
               label: "Push to destination",
@@ -7084,7 +7082,7 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
       ])
     ]));
   }
-}, m3 = /* @__PURE__ */ qe(h3, [["__scopeId", "data-v-983f678b"]]), g3 = { class: "tag-section" }, x3 = { class: "rating-card" }, y3 = { class: "header" }, k3 = { class: "title" }, v3 = { class: "pb-2" }, _3 = { class: "content-wrapper" }, b3 = { class: "content" }, E3 = { class: "publishers" }, S3 = { class: "publisher-item" }, A3 = { class: "ratings" }, w3 = { class: "rating" }, C3 = {
+}, h3 = /* @__PURE__ */ qe(p3, [["__scopeId", "data-v-d9445a9d"]]), m3 = { class: "tag-section" }, g3 = { class: "rating-card" }, x3 = { class: "header" }, y3 = { class: "title" }, k3 = { class: "pb-2" }, v3 = { class: "content-wrapper" }, _3 = { class: "content" }, b3 = { class: "publishers" }, E3 = { class: "publisher-item" }, S3 = { class: "ratings" }, A3 = { class: "rating" }, w3 = {
   __name: "TagCard",
   props: {
     tags: {
@@ -7100,24 +7098,24 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
     const D = M([]), a = o, S = Fe(() => a.charts.filter((U) => U.type === "bubble")), k = Fe(() => a.tags);
     return yn(() => {
       D.value = new Array(S.value.length).fill(!1);
-    }), (U, N) => (h(), y("div", g3, [
+    }), (U, N) => (h(), y("div", m3, [
       (h(!0), y(me, null, Ae(k.value, (V, O) => (h(), y("div", {
         class: Ge(["card-wrapper", { "full-width": V.title.includes("Publishers") }]),
         key: V.title + O
       }, [
-        p("div", x3, [
-          p("div", y3, [
-            p("h2", k3, [
-              p("span", v3, ee(V.title), 1)
+        p("div", g3, [
+          p("div", x3, [
+            p("h2", y3, [
+              p("span", k3, ee(V.title), 1)
             ])
           ]),
-          p("div", _3, [
-            p("div", b3, [
-              p("div", E3, [
+          p("div", v3, [
+            p("div", _3, [
+              p("div", b3, [
                 (h(!0), y(me, null, Ae(V.data[0].label, (F, b) => (h(), y("div", { key: F }, [
-                  p("div", S3, ee(F), 1),
-                  p("div", A3, [
-                    p("div", w3, [
+                  p("div", E3, ee(F), 1),
+                  p("div", S3, [
+                    p("div", A3, [
                       (h(!0), y(me, null, Ae(Math.floor(parseFloat(V.data[0].score[b])), (g, L) => (h(), y("span", {
                         key: `filled-${L}`,
                         class: "dot filled"
@@ -7143,7 +7141,7 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
       ], 2))), 128))
     ]));
   }
-}, T3 = /* @__PURE__ */ qe(C3, [["__scopeId", "data-v-132e8d7a"]]), D3 = { class: "chart-section-title my-3" }, I3 = { class: "chart-section" }, L3 = { key: 0 }, B3 = { class: "chart-title" }, F3 = {
+}, C3 = /* @__PURE__ */ qe(w3, [["__scopeId", "data-v-132e8d7a"]]), T3 = { class: "chart-section-title my-3" }, D3 = { class: "chart-section" }, I3 = { key: 0 }, L3 = { class: "chart-title" }, B3 = {
   __name: "ChartCard",
   props: {
     charts: {
@@ -7286,16 +7284,16 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
       return b === 1 ? "full-width" : b === 2 ? "half-width" : "third-width";
     };
     return (b, g) => (h(), y("div", null, [
-      p("h5", D3, ee(V.value[0].section), 1),
-      p("div", I3, [
+      p("h5", T3, ee(V.value[0].section), 1),
+      p("div", D3, [
         (h(!0), y(me, null, Ae(V.value, (L, q) => (h(), y("div", {
           key: L.title + q,
           ref_for: !0,
           ref: (re) => O(re, q),
           class: Ge(["chart-wrapper", F()])
         }, [
-          a.value[q] ? (h(), y("div", L3, [
-            p("div", B3, ee(L.title), 1),
+          a.value[q] ? (h(), y("div", I3, [
+            p("div", L3, ee(L.title), 1),
             H(C(ml), {
               options: L.options,
               series: L.series,
@@ -7305,7 +7303,7 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
             }, null, 8, ["options", "series", "type", "height"])
           ])) : B("", !0)
         ], 2))), 128)),
-        V.value.length === 2 ? (h(), ue(T3, {
+        V.value.length === 2 ? (h(), ue(C3, {
           key: 0,
           tags: o.tags || [],
           charts: o.charts || []
@@ -7313,7 +7311,7 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
       ])
     ]));
   }
-}, V3 = /* @__PURE__ */ qe(F3, [["__scopeId", "data-v-e1ad6154"]]), $3 = "5.12.1", O3 = 25, P3 = 0, R3 = 100, G3 = 450, M3 = 450, U3 = "*Final5", W3 = 0, N3 = [], q3 = [
+}, F3 = /* @__PURE__ */ qe(B3, [["__scopeId", "data-v-e1ad6154"]]), V3 = "5.12.1", $3 = 25, O3 = 0, P3 = 100, R3 = 450, G3 = 450, M3 = "*Final5", U3 = 0, W3 = [], N3 = [
   {
     ddd: 0,
     ind: 1,
@@ -18862,26 +18860,26 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
     st: 0,
     bm: 0
   }
-], z3 = [], H3 = {}, Q3 = {
-  v: $3,
-  fr: O3,
-  ip: P3,
-  op: R3,
-  w: G3,
-  h: M3,
-  nm: U3,
-  ddd: W3,
-  assets: N3,
-  layers: q3,
-  markers: z3,
-  props: H3
-}, K3 = {
+], q3 = [], z3 = {}, H3 = {
+  v: V3,
+  fr: $3,
+  ip: O3,
+  op: P3,
+  w: R3,
+  h: G3,
+  nm: M3,
+  ddd: U3,
+  assets: W3,
+  layers: N3,
+  markers: q3,
+  props: z3
+}, Q3 = {
   key: 0,
   class: "explore-insights-loader"
-}, Y3 = {
+}, K3 = {
   key: 1,
   class: "explore-insights-wrapper"
-}, Z3 = { class: "explore-insights" }, X3 = { class: "explore-insights-subtitle" }, J3 = { class: "d-flex flex-column" }, j3 = { class: "mb-2" }, eg = { class: "pd-segment-title-details" }, tg = { class: "pd-segment-title-details" }, ng = { class: "thumbnail-card" }, ig = { class: "thumbnail-segment-cards" }, rg = { class: "segment-card-row" }, ag = {
+}, Y3 = { class: "explore-insights" }, Z3 = { class: "explore-insights-subtitle" }, X3 = { class: "d-flex flex-column" }, J3 = { class: "mb-2" }, j3 = { class: "pd-segment-title-details" }, eg = { class: "pd-segment-title-details" }, tg = { class: "thumbnail-card" }, ng = { class: "thumbnail-segment-cards" }, ig = { class: "segment-card-row" }, rg = {
   __name: "ExploreInsights",
   setup(o) {
     const D = en(), a = D.get_selectedSegment, S = M(null), k = Fe(() => S.value || {}), U = M(), N = M([]), V = M(!0), O = M([]);
@@ -18961,12 +18959,12 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
     return Fe(() => F.value.map((L) => parseFloat(L.affinityScore || "0")).reduce((L, q) => L + q, 0).toFixed(2)), Fe(() => F.value.map((g) => parseInt(g.reach || "0", 10)).reduce((g, L) => g + L, 0).toLocaleString()), (b, g) => {
       var L, q, re;
       return h(), y(me, null, [
-        V.value ? (h(), y("div", K3, [
+        V.value ? (h(), y("div", Q3, [
           H(C(s2), {
             height: "40vh",
             ref_key: "anim",
             ref: U,
-            "animation-data": C(Q3),
+            "animation-data": C(H3),
             loop: !0,
             "auto-play": !0,
             speed: 1
@@ -18980,19 +18978,19 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
             ])
           ], -1))
         ])) : B("", !0),
-        V.value ? B("", !0) : (h(), y("div", Y3, [
-          p("div", Z3, [
-            p("h6", X3, [
-              p("div", J3, [
-                p("div", j3, [
+        V.value ? B("", !0) : (h(), y("div", K3, [
+          p("div", Y3, [
+            p("h6", Z3, [
+              p("div", X3, [
+                p("div", J3, [
                   g[1] || (g[1] = p("span", { class: "pd-segment-title" }, "1PD Segment:", -1)),
                   je(ee(((L = C(a)) == null ? void 0 : L.name) || "Segment Overview"), 1)
                 ]),
-                p("div", eg, [
+                p("div", j3, [
                   g[2] || (g[2] = p("strong", null, "Count:", -1)),
                   je(" " + ee((q = C(a)) == null ? void 0 : q.count), 1)
                 ]),
-                p("div", tg, [
+                p("div", eg, [
                   g[3] || (g[3] = p("strong", null, "Description:", -1)),
                   je(" " + ee((re = C(a)) == null ? void 0 : re.description), 1)
                 ])
@@ -19007,9 +19005,9 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
               ], -1))
             ]),
             p("div", null, [
-              p("div", ng, [
-                p("div", ig, [
-                  p("div", rg, [
+              p("div", tg, [
+                p("div", ng, [
+                  p("div", ig, [
                     (h(), ue(eh, {
                       key: b.index,
                       "segment-data": N.value,
@@ -19024,7 +19022,7 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
               return h(), y("div", {
                 key: ((pe = se == null ? void 0 : se[0]) == null ? void 0 : pe.section) + j
               }, [
-                se ? (h(), ue(V3, {
+                se ? (h(), ue(F3, {
                   key: 0,
                   charts: se || [],
                   tags: k.value.tags || []
@@ -19036,7 +19034,7 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
       ], 64);
     };
   }
-}, sg = /* @__PURE__ */ qe(ag, [["__scopeId", "data-v-3ac815d6"]]), lg = { key: 0 }, og = { key: 1 }, ug = { class: "discovery-header" }, cg = {
+}, ag = /* @__PURE__ */ qe(rg, [["__scopeId", "data-v-3ac815d6"]]), sg = { key: 0 }, lg = { key: 1 }, og = { class: "discovery-header" }, ug = {
   __name: "SegmentManagerModal",
   props: {
     baseUrl: {
@@ -19088,7 +19086,7 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
       size: "large"
     }, {
       header: It(() => [
-        F.value ? B("", !0) : (h(), y("div", lg, [
+        F.value ? B("", !0) : (h(), y("div", sg, [
           j[1] || (j[1] = p("div", { class: "header" }, [
             p("h4", null, "Segment Manager")
           ], -1)),
@@ -19099,7 +19097,7 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
             class: "ml-1"
           }, null, 8, ["modelValue"])
         ])),
-        F.value ? (h(), y("div", og, [
+        F.value ? (h(), y("div", lg, [
           p("div", {
             onClick: re,
             class: "navigation"
@@ -19110,7 +19108,7 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
             }),
             j[2] || (j[2] = p("p", { class: "mt-6" }, " Back to Segment Manager", -1))
           ]),
-          p("div", ug, [
+          p("div", og, [
             j[3] || (j[3] = p("div", { class: "discovery-header-title" }, [
               p("h6", null, "Segment Manager"),
               p("p", null, "Enriching 1PD audience segments with WPP Open Intelligence")
@@ -19131,7 +19129,7 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
           selectedSegment: o.selectedSegment,
           currentlySelectedSegment: b.value
         }, null, 8, ["baseUrl", "tenantId", "brandId", "token", "selectedSegment", "currentlySelectedSegment"])) : B("", !0),
-        O.value.id === 2 && !F.value ? (h(), ue(m3, {
+        O.value.id === 2 && !F.value ? (h(), ue(h3, {
           key: 1,
           onInsertSegment: q,
           onShowInsightsExplorer: g,
@@ -19140,16 +19138,16 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
           brandId: o.brandId,
           token: o.token
         }, null, 8, ["customSegmentUrl", "tenantId", "brandId", "token"])) : B("", !0),
-        F.value ? (h(), ue(sg, { key: 2 })) : B("", !0)
+        F.value ? (h(), ue(ag, { key: 2 })) : B("", !0)
       ]),
       _: 1
     }));
   }
-}, _g = /* @__PURE__ */ qe(cg, [["__scopeId", "data-v-80068011"]]);
+}, vg = /* @__PURE__ */ qe(ug, [["__scopeId", "data-v-80068011"]]);
 export {
-  _g as BetaSegmentManagerModal,
-  m3 as CustomSegments,
-  sg as ExploreInsights,
+  vg as BetaSegmentManagerModal,
+  h3 as CustomSegments,
+  ag as ExploreInsights,
   cm as StandardSegments,
   tr as useCustomSegmentStore,
   en as useSegmentManagerStore

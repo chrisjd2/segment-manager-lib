@@ -246,8 +246,6 @@
                         label="Segment description"
                         v-model="segmentModel.description"
                         type="text" />
-                </div>
-                <div class="ml-auto mb-2">
                     <!-- <CataUiButton class="run-query-button"
                         size="small"
                         type="secondary"

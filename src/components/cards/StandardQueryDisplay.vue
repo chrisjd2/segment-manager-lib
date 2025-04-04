@@ -94,7 +94,6 @@
   <style scoped>
   .query-builder {
     background: #f9f9f9;
-    padding: 16px;
     border-radius: 8px;
     font-family: "Inter", sans-serif;
     width: 100%;

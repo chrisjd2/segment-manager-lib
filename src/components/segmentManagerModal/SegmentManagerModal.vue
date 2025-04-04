@@ -30,7 +30,7 @@
                 </div>
                 <div class="discovery-header">
                     <div class="discovery-header-title">
-                        <h6>Segment Manager:</h6>
+                        <h6>Segment Manager</h6>
                         <p>Enriching 1PD audience segments with WPP Open Intelligence</p>
                     </div>
 

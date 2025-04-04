@@ -60,7 +60,7 @@
                         {{ selectedSegment.name }}
                     </div>
                     <div class="segment-details-subtitle">Segment Details</div>
-                    <div class="pb-15 segment-details-content">
+                    <div class="segment-details-content">
                         <div class="description-row" v-if="selectedSegment.name">
                             <div class="description-term">Name</div>
                             <div class="description-detail">{{ selectedSegment.name }}</div>
@@ -171,6 +171,7 @@
                     <!-- <CataUiButton icon="bi-x-lg" class="deselect-button" type="secondary" label="Deselect" @click="deselectSegment()" /> -->
                     <!-- <CataUiButton type="primary" label="Insert" @click="insertSegment()" /> -->
                     <CataUiButton type="secondary" label="Explore" @click="openExplore()" class="mr-2" />
+                    <CataUiButton type="delete" label="Delete" @click="deleteSegment()" class="mr-2 redButton" />
                     <CataUiButton type="primary" label="Push to destination" @click="pushToDestination()" />
                 </div>
             </div>
@@ -470,6 +471,34 @@
         emits('showInsightsExplorer', selectedSegment.value);
     }
 
+    async function deleteSegment() {
+        if (!selectedSegment.value?.segmentId) return;
+
+        const endpoint = `${props.baseUrl}/api/v1/segments/${selectedSegment.value.segmentId}`;
+
+        try {
+            const response = await fetch(endpoint, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-tenant': props.tenantId,
+                    'brand-id': props.brandId,
+                    authorization: `Bearer ${props.token}`,
+                },
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(errorText || 'Failed to delete segment');
+            }
+
+            selectedSegment.value = '';
+            await segmentManagerStore.fetch_segments(source.value);
+        } catch (err) {
+            console.error('Error deleting segment:', err);
+        }
+    }
+
     function formatString(str) {
         return str.replace(/(?<!^)([A-Z])/g, ' $1').replace(/^./, (match) => match.toUpperCase());
     }
@@ -716,15 +745,13 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 205px);
+    height: 83vh;
     padding-bottom: 10px;
     padding-top: 20px;
     border-radius: 5px;
     border: 1px solid #e4e4e4;
     background-color: #fff;
     position: relative;
-    margin-top: 10px;
-    margin-bottom: 10px;
   }
 
   .list {
@@ -776,13 +803,11 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 205px);
+    height: 83vh;
     border-radius: 5px;
     background-color: #f8f9fb;
     margin-left: 5px;
     position: relative;
-    margin-top: 10px;
-    margin-bottom: 10px;
 
   }
 
@@ -819,7 +844,7 @@
 
   .outer-wrapper-segment-details {
     padding-bottom: 10px;
-    height: calc(100vh - 265px);
+    height: 100vh;
     background-color: #F8F9FB;
     overflow-y: auto;
 
@@ -836,7 +861,7 @@
     border: 1px solid var(--color-grey-300);
     border-radius: 5px;
     height: fit-content;
-    padding: 20px;
+    padding: 25px;
   }
 
   .segment-details-title {
@@ -915,7 +940,6 @@
 
   .query-conditions {
     background-color: var(--color-grey-100);
-    padding: 16px;
   }
 
   .logical-operator {
@@ -998,6 +1022,10 @@
   }
 
   .segment-insights > * {
-    flex: 1; /* ✅ Allows items to grow and take equal space */
+    flex: 1;
+}
+
+.redButton {
+    background: red;
 }
 </style>

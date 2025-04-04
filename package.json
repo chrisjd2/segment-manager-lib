@@ -1,0 +1,60 @@
+{
+  "name": "@catalyst/segment-manager",
+  "version": "1.1.0",
+  "type": "module",
+  "files": [
+    "dist",
+    "index.js",
+    "index.umd.cjs"
+  ],
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.umd.cjs"
+    },
+    "./style.css": "./dist/style.css",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test:unit": "vitest run --coverage",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "docs:build": "vuepress build docs",
+    "docs:dev": "vuepress dev docs"
+  },
+  "dependencies": {
+    "@catalyst-core/ui-library": "^1.1.0",
+    "@catalyst/ui-library": "2.1.0-prerelease17",
+    "@catalyst/ui-wrapper": "2.0.0-prerelease4",
+    "@vueuse/core": "^10.9.0",
+    "axios": "^1.6.8",
+    "bootstrap": "^5.3.3",
+    "core-js": "^3.36.1",
+    "dayjs": "^1.11.10",
+    "lodash": "^4.17.21",
+    "lottie-web-vue": "^2.0.7",
+    "pinia": "^2.1.7",
+    "sass": "^1.75.0",
+    "uuid": "^9.0.1",
+    "vue": "^3.4.15",
+    "vue-router": "^4.3.0",
+    "vue3-smooth-dnd": "^0.0.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "5.0.3",
+    "@vitest/coverage-v8": "1.3.1",
+    "@vue/eslint-config-airbnb": "8.0.0",
+    "@vue/test-utils": "2.4.0-alpha.2",
+    "eslint": "8.49.0",
+    "eslint-import-resolver-alias": "1.1.2",
+    "eslint-plugin-vue": "9.17.0",
+    "jsdom": "24.0.0",
+    "sass": "1.71.1",
+    "vite": "5.1.4",
+    "vitest": "1.3.1"
+  }
+}

@@ -1,0 +1,234 @@
+{
+    "segmentId": "a1b2c3d4-5678-90ab-cdef-1234567890ab",
+    "source": "WPP Open Intelligence",
+    "behaviouralSegments": {
+      "title": "Behavioural Segment Groups with highest Affinity",
+      "description": "The following audience segments show the highest affinity with RoyalCanin_UK_PuppyOwners_2025",
+
+    "createdAt": "2025-03-21T14:13:00Z",
+    "updatedAt": "2025-03-21T14:13:00Z"
+},
+"charts":  [
+    {
+      "title": "Dynamics of Royal Canin Maxi Adult Wet Food in Recent Days",
+      "section": "dynamics",
+      "description": "Daily interaction patterns with Royal Canin Maxi Adult Wet Food over the past 18 days",
+      "type": "area",
+      "source": "WPP Open Intelligence",
+      "data": [
+        { "key": "2025-03-01", "keyType": "date", "value": 150, "valueType": "purchases" },
+        { "key": "2025-03-02", "keyType": "date", "value": 170, "valueType": "purchases" }
+   
+      ]
+    },
+    {
+      "title": "Day-parting for Royal Canin Maxi Adult Wet Food",
+      "section": "dayparting",
+      "description": "Purchasing behavior segmented by time of day",
+      "type": "bar",
+      "source": "WPP Open Intelligence",
+      "data": [
+        { "key": "00:00", "keyType": "hour", "value": 20, "valueType": "purchases" },
+        { "key": "01:00", "keyType": "hour", "value": 40, "valueType": "purchases" }
+    
+      ]
+    },
+    {
+      "title": "Age Distribution",
+      "section": "audience",
+      "description": "Percentage of purchases across age ranges",
+      "type": "bar",
+      "source": "WPP Open Intelligence",
+      "data": [
+        { "key": "18-24", "keyType": "range", "value": 12, "valueType": "percentage" },
+        { "key": "25-34", "keyType": "range", "value": 24, "valueType": "percentage" }
+        
+      
+      ]
+    },
+    {
+      "title": "Gender Distribution",
+      "section": "audience",
+      "description": "Share of male and female audiences",
+      "type": "donut",
+      "source": "WPP Open Intelligence",
+      "data": [
+        { "key": "Male", "keyType": "gender", "value": 60, "valueType": "percentage" },
+        { "key": "Female", "keyType": "gender", "value": 40, "valueType": "percentage" }
+      ]
+    },
+    {
+      "title": "Preferred Purchase Channels",
+      "section": "consumer_preferences",
+      "description": "Breakdown of where consumers prefer to purchase pet products",
+      "type": "bar",
+      "source": "WPP Open Intelligence",
+      "data": [
+        { "key": "Supermarkets", "keyType": "channel", "value": 40, "valueType": "percentage" },
+        { "key": "Online Pet Stores", "keyType": "channel", "value": 25, "valueType": "percentage" },
+        { "key": "Vet Clinics", "keyType": "channel", "value": 15, "valueType": "percentage" },
+        { "key": "Specialty Pet Stores", "keyType": "channel", "value": 20, "valueType": "percentage" }
+      ]
+    },
+    {
+      "title": "Lifestyle Agreement Statements",
+      "section": "psychographics",
+      "description": "Agreement levels with lifestyle and pet care statements",
+      "type": "bar",
+      "source": "WPP Open Intelligence",
+      "data": [
+        { "key": "Pets are part of my family", "keyType": "statement", "value": 90, "valueType": "agreement" },
+        { "key": "I prefer premium pet food", "keyType": "statement", "value": 65, "valueType": "agreement" },
+        { "key": "I shop eco-consciously", "keyType": "statement", "value": 55, "valueType": "agreement" }
+      ]
+    },
+    {
+      "title": "Generation Breakdown",
+      "section": "audience",
+      "description": "Generational segmentation of the target audience",
+      "type": "donut",
+      "source": "WPP Open Intelligence",
+      "data": [
+        { "key": "Gen Z", "keyType": "generation", "value": 20, "valueType": "percentage" },
+        { "key": "Millennials", "keyType": "generation", "value": 45, "valueType": "percentage" },
+        { "key": "Gen X", "keyType": "generation", "value": 25, "valueType": "percentage" },
+        { "key": "Boomers", "keyType": "generation", "value": 10, "valueType": "percentage" }
+      ]
+    },
+    {
+      "title": "Education Level Distribution",
+      "section": "education",
+      "description": "Audience educational attainment levels",
+      "type": "bar",
+      "source": "WPP Open Intelligence",
+      "data": [
+        { "key": "High School", "keyType": "education", "value": 25, "valueType": "percentage" },
+        { "key": "Bachelor's Degree", "keyType": "education", "value": 45, "valueType": "percentage" },
+        { "key": "Master's Degree", "keyType": "education", "value": 20, "valueType": "percentage" },
+        { "key": "PhD", "keyType": "education", "value": 10, "valueType": "percentage" }
+      ]
+    },
+    {
+      "title": "Life Events in the Last 12 Months",
+      "section": "life_events",
+      "description": "Significant life changes experienced in the past year",
+      "type": "pie",
+      "source": "WPP Open Intelligence",
+      "data": [
+        { "key": "Moved Home", "keyType": "event", "value": 20, "valueType": "percentage" },
+        { "key": "Changed Jobs", "keyType": "event", "value": 30, "valueType": "percentage" },
+        { "key": "Got a Pet", "keyType": "event", "value": 50, "valueType": "percentage" }
+      ]
+    },
+    {
+      "title": "Working Status",
+      "section": "work",
+      "description": "Employment situation of audience members",
+      "type": "bar",
+      "source": "WPP Open Intelligence",
+      "data": [
+        { "key": "Employed Full-time", "keyType": "work", "value": 60, "valueType": "percentage" },
+        { "key": "Self-employed", "keyType": "work", "value": 15, "valueType": "percentage" },
+        { "key": "Unemployed", "keyType": "work", "value": 10, "valueType": "percentage" },
+        { "key": "Retired", "keyType": "work", "value": 15, "valueType": "percentage" }
+      ]
+    },
+    {
+      "title": "Personality Archetypes",
+      "section": "personality",
+      "description": "Dominant personality traits across audience",
+      "type": "pie",
+      "source": "WPP Open Intelligence",
+      "data": [
+        { "key": "Explorer", "keyType": "archetype", "value": 35, "valueType": "percentage" },
+        { "key": "Caregiver", "keyType": "archetype", "value": 40, "valueType": "percentage" },
+        { "key": "Achiever", "keyType": "archetype", "value": 25, "valueType": "percentage" }
+      ]
+    },
+    {
+      "title": "Regional Breakdown",
+      "section": "region",
+      "description": "Regional distribution of purchases",
+      "type": "bar",
+      "source": "WPP Open Intelligence",
+      "data": [
+        { "key": "North America", "keyType": "region", "value": 45, "valueType": "percentage" },
+        { "key": "Europe", "keyType": "region", "value": 30, "valueType": "percentage" },
+        { "key": "Asia", "keyType": "region", "value": 25, "valueType": "percentage" }
+      ]
+    },
+    {
+      "title": "Keyword Map for Pet Owners",
+      "section": "keywords",
+      "description": "Keyword performance visualized by impressions and reach",
+      "type": "bubble",
+      "source": "WPP Open Intelligence",
+      "data": [
+        { "x": 10, "y": 200, "z": 5 },
+        { "x": 20, "y": 400, "z": 8 },
+        { "x": 30, "y": 600, "z": 10 },
+        { "x": 40, "y": 800, "z": 12 },
+        { "x": 50, "y": 1200, "z": 18 },
+        { "x": 60, "y": 1600, "z": 25 },
+        { "x": 70, "y": 1700, "z": 28 },
+        { "x": 80, "y": 1800, "z": 30 },
+        { "x": 90, "y": 200, "z": 35 },
+        { "x": 100, "y": 250, "z": 40 },
+        { "x": 110, "y": 2700, "z": 45 },
+        { "x": 120, "y": 290, "z": 50 },
+        { "x": 130, "y": 3200, "z": 55 },
+        { "x": 140, "y": 350, "z": 60 },
+        { "x": 150, "y": 3700, "z": 65 }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "title": "Interest in RoyalCanin_US_KittenCare_2025",
+      "section": "interests",
+      "source": "WPP Open Intelligence",
+      "type": "interestByCountry",
+      "items": [
+        {
+          "name": "USA",
+          "score": 5,
+          "maxScore": 5
+        },
+        {
+          "name": "Canada",
+          "score": 4,
+          "maxScore": 5
+        }
+      ],
+      "meta": {
+        "totalSampleSize": 100000
+      }
+    },
+    {
+      "title": "Interest in RoyalCanin_US_KittenCare_2025",
+      "section": "interests",
+      "source": "WPP Open Intelligence",
+      "type": "interestByCountry",
+      "items": [
+        {
+          "name": "USA",
+          "score": 5,
+          "maxScore": 5
+        },
+        {
+          "name": "Canada",
+          "score": 4,
+          "maxScore": 5
+        }
+      ],
+      "meta": {
+        "totalSampleSize": 100000
+      }
+    }
+  ]
+}
+
+
+
+
+  

@@ -843,22 +843,20 @@
   .query-builder {
     flex: 1;
     display: flex;
-    height: calc(100vh - 185px);
+    height: 83vh;
   }
 
   .query-builder-left {
     flex: 1;
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 205px);
+    height: 83vh;
     padding-bottom: 10px;
     padding-left: 20px;
     border-radius: 5px;
     border: 1px solid #e4e4e4;
     background-color: #fff;
     position: relative;
-    margin-top: 10px;
-    margin-bottom: 10px;
 
     .query-builder-left-loader {
       position: absolute;
@@ -1002,8 +1000,8 @@
   }
 
   .query-builder-right {
-    flex: 1;
-    height: calc(100vh - 205px);
+    flex: 2;
+    height: 83vh;
     display: flex;
     background: var(--color-white);
     border-radius: 6px;
@@ -1011,7 +1009,6 @@
     background-color: #F8F9FB;
     border: 1px solid #e4e4e4;
     flex-direction: column;
-    margin-top: 10px;
     overflow: auto;
 
     .query-builder-footer {

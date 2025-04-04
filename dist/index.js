@@ -7084,7 +7084,7 @@ const O2 = { class: "d-flex align-items-center mb-30" }, P2 = {
       ])
     ]));
   }
-}, m3 = /* @__PURE__ */ qe(h3, [["__scopeId", "data-v-b11807f7"]]), g3 = { class: "tag-section" }, x3 = { class: "rating-card" }, y3 = { class: "header" }, k3 = { class: "title" }, v3 = { class: "pb-2" }, _3 = { class: "content-wrapper" }, b3 = { class: "content" }, E3 = { class: "publishers" }, S3 = { class: "publisher-item" }, A3 = { class: "ratings" }, w3 = { class: "rating" }, C3 = {
+}, m3 = /* @__PURE__ */ qe(h3, [["__scopeId", "data-v-983f678b"]]), g3 = { class: "tag-section" }, x3 = { class: "rating-card" }, y3 = { class: "header" }, k3 = { class: "title" }, v3 = { class: "pb-2" }, _3 = { class: "content-wrapper" }, b3 = { class: "content" }, E3 = { class: "publishers" }, S3 = { class: "publisher-item" }, A3 = { class: "ratings" }, w3 = { class: "rating" }, C3 = {
   __name: "TagCard",
   props: {
     tags: {

@@ -72,14 +72,14 @@
                                 @click="runQuery()" />
 
                             <CataUiButton
-                                v-if="!segmentSaved"
                                 class="run-query-button ml-10"
                                 type="secondary"
                                 size="small"
                                 label="Save Query"
-                                :disabled="!segmentModel.name || !segmentModel.description || !segmentCount"
+                                :disabled="!segmentModel.name || !segmentModel.description || !segmentCount || segmentSaved"
                                 :loading="savingSegment"
                                 @click="saveSegment()" />
+
                         </div>
 
                     </div>
@@ -285,13 +285,13 @@
     } from '@catalyst/ui-library';
     import { Container, Draggable } from 'vue3-smooth-dnd';
     import AiQueryFeedback from '@/components/app/AiQueryFeedback.vue';
-    import FreeForm from './FreeForm.vue';
     import { useCustomSegmentStore } from '@/store/customSegments/customSegmentStore';
     import { useSegmentManagerStore } from '@/store/segmentManagerStore';
     import svgUrl from '@/components/images/standard.svg';
     import CustomExploreThumbnail from '@/components/cards/ExploreThumbnail.vue';
     import QueryAttributesList from '@/components/customSegmentComponents/QueryAttributesList.vue';
     import ThumbnailCard from '@/components/cards/ThumbnailCard.vue';
+    import FreeForm from './FreeForm.vue';
 
     const props = defineProps({
         segment: Object,
@@ -433,6 +433,38 @@
         emits('showInsightsExplorer', segmentThumbnail.value);
     };
 
+    function convertQueryToReadable(query) {
+        const operatorMap = {
+            $eq: 'is equal to',
+            $neq: 'is not equal to',
+            $lt: 'is less than',
+            $lte: 'is less than or equal to',
+            $gt: 'is greater than',
+            $gte: 'is greater than or equal to',
+            $in: 'is in',
+            $nin: 'is not in',
+            $bw: 'begins with',
+            $nbw: 'does not begin with',
+            $ew: 'ends with',
+            $new: 'does not end with',
+            $bt: 'is between',
+            $nbt: 'is not between',
+        };
+
+        return query
+            .filter((item) => item.statement)
+            .map(({ statement, input_type }) => {
+                const [field, op, value] = statement;
+
+                return {
+                    field,
+                    operator: operatorMap[op] || op,
+                    value,
+                    type: input_type,
+                };
+            });
+    }
+
     async function generateInsights(segment) {
         const payload = {
             brandName: props.brandName,
@@ -460,7 +492,6 @@
         }
 
         const result = await res.json();
-        console.log('Insights generated:', result);
     }
     async function saveSegment() {
         segmentStep.value = 'saving';
@@ -473,7 +504,7 @@
             market: segmentManagerStore.query.demographics.market,
             description: segmentModel.value.description,
             name: segmentModel.value.name,
-            query: 'SELECT * FROM CUSTOMER',
+            query: convertQueryToReadable(segmentModel.value.conditions[0].group),
         };
 
         try {
@@ -577,6 +608,7 @@
             showSegmentQueryResults.value = true;
         }
         savingDraft.value = false;
+        segmentSaved.value = false;
     }
     function getOperatorText(operator, id) {
         if (operator === 'operatorsQueries') {

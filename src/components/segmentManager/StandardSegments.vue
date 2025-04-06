@@ -107,7 +107,7 @@
                         </div>
                         <div class="description-row" v-if="selectedSegment.count">
                             <div class="description-term">Last count</div>
-                            <div class="description-detail-bold">{{ selectedSegment.count }}</div>
+                            <div class="description-detail-bold">{{ formatCount(selectedSegment.count) }}</div>
                             <span class="description-detail" v-if="selectedSegment.refreshCountDate">
                                 ({{ dayjs(selectedSegment.refreshCountDate).format('YYYY-MM-DD, HH:mm') }})
                             </span>
@@ -134,8 +134,7 @@
                             :selectedSegment="selectedSegment"
                             :location="'standard'"
                             @showInsightsExplorer="openExplore" /> -->
-
-                        <StandardQueryDisplay v-if="tabActiveSegmentDetails.id === 2" />
+                        <StandardQueryDisplay v-if="tabActiveSegmentDetails.id === 2" :query="selectedSegment.query" />
                     </div>
 
                     <!-- </template>
@@ -163,7 +162,7 @@
                             {{ selectedSegment.name ? `${`${selectedSegment.name} - `}` : 'none' }}
                         </span>
                         <span>
-                            {{ selectedSegment.count }}
+                            {{ formatCount(selectedSegment.count) }}
                         </span>
                     </div>
                 </div>
@@ -346,7 +345,7 @@
     const chartOptionsCombined = {
         chart: {
             type: 'bar',
-            height: 700, // ✅ Increased height for spacing
+            height: 700,
             stacked: true,
             toolbar: {
                 show: false,
@@ -357,9 +356,9 @@
         },
         plotOptions: {
             bar: {
-                horizontal: true, // ✅ Keeps it horizontal
+                horizontal: true,
                 dataLabels: {
-                    position: 'center', // Keeps labels inside the bars
+                    position: 'center',
                 },
             },
         },
@@ -373,7 +372,7 @@
             ],
             labels: {
                 style: {
-                    fontSize: '14px', // ✅ Increased font size for readability
+                    fontSize: '14px',
                     fontFamily: 'Inter, sans-serif',
                     colors: '#777',
                 },
@@ -388,9 +387,9 @@
         yaxis: {
             labels: {
                 style: {
-                    fontSize: '14px', // ✅ More readable category labels
+                    fontSize: '14px',
                     fontFamily: 'Inter, sans-serif',
-                    colors: '#333', // Darker for contrast
+                    colors: '#333',
                 },
             },
         },
@@ -405,7 +404,7 @@
             },
         },
 
-        colors: ['#4A90E2', '#A7C7F2'], // ✅ Semi-transparent colors
+        colors: ['#4A90E2', '#A7C7F2'],
         dataLabels: {
             enabled: false,
         },
@@ -429,11 +428,11 @@
     const seriesCombined = [
         {
             name: 'Audience Groups',
-            data: [15, 12, 18, 10, 14, 25, 10, 16, 20, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0], // ✅ Increased Animals/Wildlife to the highest value
+            data: [15, 12, 18, 10, 14, 25, 10, 16, 20, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         },
         {
             name: 'Life Stages',
-            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 15, 18, 12, 10, 8, 10, 7, 10], // ✅ Increased Young Single to the highest value
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 15, 18, 12, 10, 8, 10, 7, 10],
         },
     ];
 
@@ -501,6 +500,12 @@
 
     function formatString(str) {
         return str.replace(/(?<!^)([A-Z])/g, ' $1').replace(/^./, (match) => match.toUpperCase());
+    }
+
+    function formatCount(count) {
+        if (count === undefined || count === null) return '';
+        const numCount = typeof count === 'string' ? parseInt(count, 10) : count;
+        return numCount.toLocaleString();
     }
 
     function updateList(event) {

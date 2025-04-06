@@ -19,7 +19,7 @@
                     <div class="mb-2">
                         <span class="pd-segment-title">1PD Segment:</span>{{ selectedSegment?.name || 'Segment Overview' }}
                     </div>
-                    <div class="pd-segment-title-details"><strong>Count:</strong> {{ selectedSegment?.count }}</div>
+                    <div class="pd-segment-title-details"><strong>Count:</strong> {{ formatCount(selectedSegment?.count) }}</div>
                     <div class="pd-segment-title-details"><strong>Description:</strong>  {{ selectedSegment?.description }}</div>
                 </div>
                 <span class="logo-wrapper">
@@ -132,22 +132,23 @@
             //     acc[item.section].push(item);
             //     return acc;
             // }, {});
-            const grouped = insightData.value.charts.reduce((acc, item, index) => {
+            const grouped = insightData.value.charts.reduce((acc, item, index, array) => {
                 if (index < 2) {
-                    // First two items go in the first group
-                    if (index === 0) acc.push([item]);
-                    else acc[0].push(item);
+                    // First two go in the first group
+                    if (!acc[0]) acc[0] = [];
+                    acc[0].push(item);
+                } else if (index < 5) {
+                    // Next three go in the second group
+                    if (!acc[1]) acc[1] = [];
+                    acc[1].push(item);
                 } else {
-                    // For the rest, group by every 3
-                    const relativeIndex = index - 2;
-                    const groupIndex = Math.floor(relativeIndex / 3) + 1;
-
-                    if (!acc[groupIndex]) acc[groupIndex] = [];
-                    acc[groupIndex].push(item);
+                    // All remaining charts go in the third group
+                    if (!acc[2]) acc[2] = [];
+                    acc[2].push(item);
                 }
-
                 return acc;
             }, []);
+
             segmentsSection.value = insightData.value.segments[0];
             groupedBySection.value = Object.values(grouped);
 
@@ -205,6 +206,12 @@
         const values = mainSegments.value.map((s) => parseInt(s.reach || '0', 10));
         return values.reduce((a, b) => a + b, 0).toLocaleString();
     });
+
+    function formatCount(count) {
+        if (count === undefined || count === null) return '';
+        const numCount = typeof count === 'string' ? parseInt(count, 10) : count;
+        return numCount.toLocaleString();
+    }
 
 </script>
 

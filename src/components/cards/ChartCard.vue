@@ -1,6 +1,9 @@
 <template>
     <div>
-        <h5 class="chart-section-title my-3">{{chartList[0].section}}</h5>
+        <h5 class="chart-section-title my-3">
+            {{ chartList[0].section.charAt(0).toUpperCase() + chartList[0].section.slice(1) }}
+        </h5>
+
         <div class="chart-section">
             <div
                 v-for="(chart, index) in chartList"
@@ -51,15 +54,57 @@
         const type = 'area';
         const baseOptions = chartBaseOptionsMap[type] || {};
 
-        const categories = chart.data[0]?.label || [];
+        const weekLabels = chart.data[0]?.label || [];
         const rawValues = chart.data[0]?.score || [];
         const values = rawValues.map((v) => (Number.isNaN(Number(v)) ? v : Number(v)));
-
         const series = [{ name: chart.title, data: values }];
 
-        // Enhanced options for smoother area charts
+        const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const weekToMonth = weekLabels.map((_, i) => monthLabels[Math.floor(i / (52 / 12))]);
+
+        const displayedCategories = [];
+        const seen = new Set();
+        weekToMonth.forEach((month) => {
+            if (!seen.has(month)) {
+                displayedCategories.push(month);
+                seen.add(month);
+            } else {
+                displayedCategories.push('');
+            }
+        });
+
         const dynamicOptions = {
-            labels: categories,
+            xaxis: {
+                categories: displayedCategories,
+                title: {
+                    text: 'Month',
+                    style: {
+                        fontSize: '14px',
+                        fontWeight: 500,
+                        color: '#666',
+                    },
+                },
+                tickPlacement: 'on',
+                labels: {
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Inter, sans-serif',
+                        colors: '#777',
+                    },
+                    rotate: 0,
+                    trim: false,
+                },
+            },
+            yaxis: {
+                title: {
+                    text: 'Indexed Consumption',
+                    style: {
+                        fontSize: '14px',
+                        fontWeight: 500,
+                        color: '#666',
+                    },
+                },
+            },
             colors: [monochromeBaseColors[index % monochromeBaseColors.length]],
             stroke: {
                 curve: 'smooth',
@@ -75,20 +120,42 @@
                 },
             },
             dataLabels: {
-                enabled: false, // Remove the black boxes with numbers
+                enabled: false,
             },
             markers: {
-                size: 0, // Remove data point markers for smoother appearance
+                size: 0,
             },
             tooltip: {
                 enabled: true,
                 shared: true,
                 intersect: false,
-                // Show data values in tooltip instead of on chart
-                y: {
-                    formatter(value) {
-                        return value;
-                    },
+                custom: ({ series, seriesIndex, dataPointIndex, w }) => {
+                    const week = w.globals.labels[dataPointIndex];
+                    const value = series[seriesIndex][dataPointIndex];
+                    return `
+                    <div style="
+                        border-radius: 6px;
+                        overflow: hidden;
+                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                        font-family: Inter, sans-serif;
+                        font-size: 14px;
+                    ">
+                        <div style="
+                            background-color: #f1f1f1;
+                            padding: 8px 12px;
+                            font-weight: 600;
+                        ">
+                            Week ${week}
+                        </div>
+                        <div style="
+                            background: white;
+                            padding: 10px 12px;
+                        ">
+                            <span style="color: #000; font-weight: 500;">Indexed Consumption (Annual): </span>
+                            <span style="font-weight: 600;">${value}</span>
+                        </div>
+                    </div>
+                `;
                 },
             },
             grid: {
@@ -168,11 +235,96 @@
                 };
             } else if (type === 'bar' || type === 'vertical bar' || type === 'vertical bars' || type === 'Vertical bars' || type === 'vertical chart') {
                 if (chart.title === 'Average View of Digital consumption (Daily)') {
-                    series = [{ name: chart.title, data: values }];
+                    series = [{ name: 'Indexed Consumption', data: values }];
                     dynamicOptions = {
-                        labels: categories,
+                        xaxis: {
+                            categories,
+                            title: {
+                                text: 'Hour of the Day',
+                                style: {
+                                    fontSize: '14px',
+                                    fontWeight: 500,
+                                    color: '#666',
+                                },
+                            },
+                            labels: {
+                                style: {
+                                    fontSize: '13px',
+                                    fontFamily: 'Inter, sans-serif',
+                                    colors: '#777',
+                                },
+                                formatter: (value) => `${value}:00`, // Optional: show "1:00", "2:00", etc.
+                            },
+                        },
+                        yaxis: {
+                            title: {
+                                text: 'Indexed Consumption',
+                                style: {
+                                    fontSize: '14px',
+                                    fontWeight: 500,
+                                    color: '#666',
+                                },
+                            },
+                            labels: {
+                                style: {
+                                    fontSize: '13px',
+                                    fontFamily: 'Inter, sans-serif',
+                                    colors: '#777',
+                                },
+                            },
+                        },
                         colors: [monochromeBaseColors[index % monochromeBaseColors.length]],
-                        plotOptions: { bar: { horizontal: false, distributed: false } },
+                        plotOptions: {
+                            bar: {
+                                horizontal: false,
+                                distributed: false,
+                                borderRadius: 4,
+                                columnWidth: '50%',
+                            },
+                        },
+                        tooltip: {
+                            enabled: true,
+                            shared: false,
+                            intersect: true,
+                            custom: ({ series, seriesIndex, dataPointIndex, w }) => {
+                                const hour = w.globals.labels[dataPointIndex];
+                                const value = series[seriesIndex][dataPointIndex];
+                                return `
+                    <div style="
+                        border-radius: 6px;
+                        overflow: hidden;
+                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                        font-family: Inter, sans-serif;
+                        font-size: 14px;
+                    ">
+                        <div style="
+                            background-color: #f1f1f1;
+                            padding: 8px 12px;
+                            font-weight: 600;
+                        ">
+                            Hour ${hour}
+                        </div>
+                        <div style="
+                            background: white;
+                            padding: 10px 12px;
+                        ">
+                            <span style="color: #000; font-weight: 500;">Indexed Consumption: </span>
+                            <span style="font-weight: 600;">${value}</span>
+                        </div>
+                    </div>
+                `;
+                            },
+                        },
+                        dataLabels: {
+                            enabled: false,
+                        },
+                        grid: {
+                            borderColor: '#f1f1f1',
+                            row: {
+                                colors: ['transparent', 'transparent'],
+                                opacity: 0.5,
+                            },
+                        },
                     };
                 } else {
                     if (chart.title === 'Personality archetype') {

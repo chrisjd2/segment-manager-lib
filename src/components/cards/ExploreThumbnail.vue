@@ -15,7 +15,7 @@
                 <div class="query-result">
                     Segment size
                     <span class="query-result-count">{{
-                        props.segmentCount
+                        formatCount(props.segmentCount)
                     }}</span>
                     records.
                 </div>
@@ -61,7 +61,7 @@
     const chartOptionsCombined = {
         chart: {
             type: 'bar',
-            height: 700, // ✅ Increased height for spacing
+            height: 700,
             stacked: true,
             toolbar: {
                 show: false,
@@ -72,9 +72,9 @@
         },
         plotOptions: {
             bar: {
-                horizontal: true, // ✅ Keeps it horizontal
+                horizontal: true,
                 dataLabels: {
-                    position: 'center', // Keeps labels inside the bars
+                    position: 'center',
                 },
             },
         },
@@ -88,7 +88,7 @@
             ],
             labels: {
                 style: {
-                    fontSize: '14px', // ✅ Increased font size for readability
+                    fontSize: '14px',
                     fontFamily: 'Inter, sans-serif',
                     colors: '#777',
                 },
@@ -103,9 +103,9 @@
         yaxis: {
             labels: {
                 style: {
-                    fontSize: '14px', // ✅ More readable category labels
+                    fontSize: '14px',
                     fontFamily: 'Inter, sans-serif',
-                    colors: '#333', // Darker for contrast
+                    colors: '#333',
                 },
             },
         },
@@ -120,7 +120,7 @@
             },
         },
 
-        colors: ['#4A90E2', '#A7C7F2'], // ✅ Semi-transparent colors
+        colors: ['#4A90E2', '#A7C7F2'],
         dataLabels: {
             enabled: false,
         },
@@ -154,6 +154,12 @@
 
     function exploreInsights() {
         emit('explore-insights');
+    }
+
+    function formatCount(count) {
+        if (count === undefined || count === null) return '';
+        const numCount = typeof count === 'string' ? parseInt(count, 10) : count;
+        return numCount.toLocaleString();
     }
 
 </script>

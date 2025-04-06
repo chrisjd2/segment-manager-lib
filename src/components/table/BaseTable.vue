@@ -133,7 +133,7 @@
                                     <slot name="linkHandler" :link="{ row, columnKey: column.key }"></slot>
                                 </template>
                                 <template v-else-if="column.type === 'number'">
-                                    <span class="d-flex justify-content-end pr-45">{{ row[column.key] }}</span>
+                                    <span class="d-flex justify-content-end pr-45">{{ formatCount(row[column.key]) }}</span>
                                 </template>
                                 <template v-else>
                                     <span :title="formatValue(row[column.key].value || row[column.key], column.type)">
@@ -282,6 +282,7 @@
             emits('columnSorted', { sortColumn: sortColumn.value, sortOrder });
         }
     }
+
     function formatValue(value, type) {
         let val = '';
         if (typeof value === 'object') {
@@ -298,7 +299,17 @@
             const date = dayjs(new Date(val));
             return dayjs(date).format('DD MMM YYYY, HH:mm');
         }
+        if (type === 'number' || ((typeof val === 'number' || (typeof val === 'string' && !Number.isNaN(Number(val)))) && String(val).trim() !== '')) {
+            const numValue = typeof val === 'string' ? Number(val) : val;
+            return numValue.toLocaleString();
+        }
         return val;
+    }
+
+    function formatCount(count) {
+        if (count === undefined || count === null) return '';
+        const numCount = typeof count === 'string' ? parseInt(count, 10) : count;
+        return numCount.toLocaleString();
     }
 
     watch(checkAllRows, (status) => {

@@ -161,7 +161,8 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  min-height: 300px;
+  min-height: 320px;
+  height: 100%;
 }
 
   .header {

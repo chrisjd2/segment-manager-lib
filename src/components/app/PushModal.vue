@@ -64,9 +64,11 @@
                         <h3>WPP Open</h3>
                         <div class="checkbox-group-category">
                             <CataUiInputCheckbox
-                                label="Open Media Studio"
+                                v-for="option in wppOpenOptions"
+                                :key="option"
+                                :label="option"
                                 v-model="selectedOptions"
-                                value="Open Media Studio" />
+                                :value="option" />
                         </div>
                     </div>
                 </div>
@@ -91,6 +93,7 @@
     const campaignOptions = ['Build new campaign', 'Update current campaign'];
     const cohortOptions = ['Display & Video 360', 'The Trade Desk'];
     const cleanRoomOptions = ['Infosum', 'LiveRamp'];
+    const wppOpenOptions = ['Open Media Studio', 'Audience Planner'];
 
     function closeModal() {
         emits('close');

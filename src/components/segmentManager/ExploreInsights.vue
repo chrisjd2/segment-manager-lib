@@ -31,7 +31,7 @@
                 </span>
 
             </h6>
-            <div>
+            <div v-if="insightData">
                 <!-- <h3 class="cooccurrence-title">Behavioural Segment Groups with highest Affinity</h3>
                 <p class="cooccurrence-description">These segments exhibit distinct patterns in engagement and loyalty. Their preferences and actions provide valuable insights for optimizing campaigns and enhancing brand connections.</p> -->
                 <div class="thumbnail-card">
@@ -73,9 +73,11 @@
                     </div>
                 </div>
             </div>
-            <div v-for="(section, index) in groupedBySection" :key="section?.[0]?.section + index">
-                <ChartCard :charts="section || []" v-if="section" :tags="insight.tags || []" />
-            </div>
+            <template v-if="insightData">
+                <div v-for="(section, index) in groupedBySection" :key="section?.[0]?.section + index">
+                    <ChartCard :charts="section || []" v-if="section" :tags="insight.tags || []" />
+                </div>
+            </template>
             <!-- <TagCard :tags="insight.tags || []" :charts="insight.charts || []" /> -->
         </div>
     </div>
@@ -93,6 +95,8 @@
     import { useSegmentManagerStore } from '@/store/segmentManagerStore';
     import loaderAnimation from '@/components/images/loaderAnimation.json';
     import MainInfoCard from '../cards/MainInfoCard.vue';
+
+    const emits = defineEmits(['apiError']);
 
     const segmentManagerStore = useSegmentManagerStore();
     const selectedSegment = segmentManagerStore.get_selectedSegment;
@@ -123,6 +127,14 @@
                     },
                 },
             );
+
+            if (!response?.data?.data) {
+                emits('apiError', {
+                    error: 'Empty response',
+                    headline: 'Error',
+                    message: 'Sorry, an error occurred while getting your insights.',
+                });
+            }
 
             insightData.value = response.data?.data?.[0];
             // const groupingBySection = insightData.value.charts.reduce((acc, item) => {
@@ -156,7 +168,14 @@
             loadingInsights.value = false;
         } catch (error) {
             loadingInsights.value = false;
-            console.error('Failed to fetch insights:', error);
+            const apiError = {
+                error,
+                headline: 'Error',
+                message:
+                    error?.response?.data
+                    || 'Sorry, an error occurred while getting your insights.',
+            };
+            emits(apiError);
         }
     });
 

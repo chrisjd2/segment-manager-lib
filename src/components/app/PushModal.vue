@@ -93,7 +93,7 @@
     const campaignOptions = ['Build new campaign', 'Update current campaign'];
     const cohortOptions = ['Display & Video 360', 'The Trade Desk'];
     const cleanRoomOptions = ['Infosum', 'LiveRamp'];
-    const wppOpenOptions = ['Open Media Studio', 'Audience Planner'];
+    const wppOpenOptions = ['Open Media Studio', 'Audience Builder'];
 
     function closeModal() {
         emits('close');

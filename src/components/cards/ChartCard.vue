@@ -20,9 +20,15 @@
                         :height="chart.chartType === 'bubble' ? '550' : '350'" />
                 </div>
             </div>
+            <h5 class="chart-section-title my-3" v-if="chartList[0].section === 'Digital Consumption'">
+                Paid Intelligence
+            </h5>
             <TagCard :tags="tags || []" :charts="charts || []" v-if="chartList.length === 2" />
         </div>
         <!-- <div class="chart-section"> -->
+        <h5 v-if="chartList[0].section === 'Digital Consumption'" class="chart-section-title my-3">
+            Earned & Shared Intelligence
+        </h5>
         <div v-if="chartList[0].section === 'Digital Consumption'">
             <div
                 class="chart-wrapper"
@@ -474,81 +480,80 @@
         ],
     };
 
-    const paidSocialChart = computed(() => ({
-        chartType: 'bar',
-        title: paidSocial.title,
-        section: paidSocial.section,
-        description: paidSocial.description,
-        series: [
-            {
-                name: 'Audience',
-                data: paidSocial.data.map((item) => ({
-                    x: item.name, // e.g. 'Career Builders'
-                    y: Number(item.x), // e.g. 65 (Audience value)
-                    goals: [
-                        {
-                            name: 'Population',
-                            value: Number(item.y), // e.g. 50
-                            strokeWidth: 28,
-                            strokeHeight: 10,
-                            strokeColor: '#775DD0',
-                        },
-                    ],
-                })),
-            },
-        ],
-        options: {
-            chart: {
-                type: 'bar',
-                height: 400,
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: false,
-                    barHeight: '70%',
+    const paidSocialChart = computed(() => {
+        const categories = paidSocial.data.map((item) => item.name);
+
+        return {
+            chartType: 'bar',
+            title: paidSocial.title,
+            section: paidSocial.section,
+            description: paidSocial.description,
+            series: [
+                {
+                    name: 'Audience',
+                    data: paidSocial.data.map((item) => Number(item.x)),
                 },
-            },
-            dataLabels: {
-                enabled: true,
-                formatter(val, opts) {
-                    const { goals } = opts.w.config.series[opts.seriesIndex].data[opts.dataPointIndex];
-                    if (goals && goals.length) {
-                        return `${val} / ${goals[0].value}`;
-                    }
-                    return val;
+                {
+                    name: 'Population',
+                    data: paidSocial.data.map((item) => Number(item.y)),
                 },
-                style: {
-                    fontSize: '12px',
-                    colors: ['#333'],
-                },
-            },
-            legend: {
-                show: true,
-                showForSingleSeries: true,
-                customLegendItems: ['Audience', 'Population'],
-                markers: {
-                    fillColors: ['#008FFB', '#775DD0'],
-                },
-            },
-            tooltip: {
-                shared: true,
-                intersect: false,
-            },
-            grid: {
-                borderColor: '#E4E4E7',
-                strokeDashArray: 4,
-            },
-            xaxis: {
-                labels: {
-                    style: {
-                        fontSize: '12px',
-                        fontFamily: 'Inter',
-                        colors: '#777',
+            ],
+            options: {
+                chart: {
+                    type: 'bar',
+                    height: 400,
+                    toolbar: {
+                        show: false,
                     },
                 },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        columnWidth: '50%', // Adjust this for spacing
+                    },
+                },
+                dataLabels: {
+                    enabled: true,
+                    style: {
+                        fontSize: '12px',
+                        colors: ['#333'],
+                    },
+                },
+                legend: {
+                    show: true,
+                    position: 'top',
+                    horizontalAlign: 'left',
+                    markers: {
+                        fillColors: ['#008FFB', '#775DD0'],
+                    },
+                },
+                tooltip: {
+                    shared: true,
+                    intersect: false,
+                },
+                grid: {
+                    borderColor: '#E4E4E7',
+                    strokeDashArray: 4,
+                },
+                xaxis: {
+                    categories,
+                    labels: {
+                        style: {
+                            fontSize: '12px',
+                            fontFamily: 'Inter',
+                            colors: '#777',
+                        },
+                    },
+                },
+                yaxis: {
+                    title: {
+                        text: '%',
+                    },
+                },
+                colors: ['#0A2FFF', '#D9DCDE'],
             },
-        },
-    }));
+        };
+    });
 
 </script>
 

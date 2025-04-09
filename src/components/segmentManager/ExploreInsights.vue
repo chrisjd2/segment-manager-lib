@@ -29,7 +29,6 @@
                         alt="logo"
                         width="120" />
                 </span>
-
             </h6>
             <div v-if="insightData">
                 <!-- <h3 class="cooccurrence-title">Behavioural Segment Groups with highest Affinity</h3>

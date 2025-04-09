@@ -19033,7 +19033,7 @@ const Oh = { class: "d-flex align-items-center mb-30" }, Ph = {
 }, Yg = {
   key: 1,
   class: "explore-insights-wrapper"
-}, Zg = { class: "explore-insights" }, Jg = { class: "explore-insights-subtitle" }, Xg = { class: "d-flex flex-column" }, jg = { class: "mb-2" }, ex = { class: "pd-segment-title-details" }, tx = { class: "pd-segment-title-details" }, nx = { key: 0 }, ix = { class: "thumbnail-card" }, rx = { class: "thumbnail-segment-cards" }, ax = { class: "segment-card-row" }, sx = {
+}, Zg = { class: "explore-insights" }, Jg = { class: "explore-insights-subtitle" }, Xg = { class: "d-flex flex-column" }, jg = { class: "mb-2" }, e3 = { class: "pd-segment-title-details" }, t3 = { class: "pd-segment-title-details" }, n3 = { key: 0 }, i3 = { class: "thumbnail-card" }, r3 = { class: "thumbnail-segment-cards" }, a3 = { class: "segment-card-row" }, s3 = {
   __name: "ExploreInsights",
   emits: ["apiError"],
   setup(o, { emit: C }) {
@@ -19147,11 +19147,11 @@ const Oh = { class: "d-flex align-items-center mb-30" }, Ph = {
                   V[1] || (V[1] = p("span", { class: "pd-segment-title" }, "1PD Segment:", -1)),
                   tt(ae(((K = A(g)) == null ? void 0 : K.name) || "Segment Overview"), 1)
                 ]),
-                p("div", ex, [
+                p("div", e3, [
                   V[2] || (V[2] = p("strong", null, "Count:", -1)),
                   tt(" " + ae(T((J = A(g)) == null ? void 0 : J.count)), 1)
                 ]),
-                p("div", tx, [
+                p("div", t3, [
                   V[3] || (V[3] = p("strong", null, "Description:", -1)),
                   tt(" " + ae((ve = A(g)) == null ? void 0 : ve.description), 1)
                 ])
@@ -19165,10 +19165,10 @@ const Oh = { class: "d-flex align-items-center mb-30" }, Ph = {
                 })
               ], -1))
             ]),
-            R.value ? (h(), y("div", nx, [
-              p("div", ix, [
-                p("div", rx, [
-                  p("div", ax, [
+            R.value ? (h(), y("div", n3, [
+              p("div", i3, [
+                p("div", r3, [
+                  p("div", a3, [
                     (h(), me(t2, {
                       key: Y.index,
                       "segment-data": O.value,
@@ -19195,7 +19195,7 @@ const Oh = { class: "d-flex align-items-center mb-30" }, Ph = {
       ], 64);
     };
   }
-}, lx = /* @__PURE__ */ Qe(sx, [["__scopeId", "data-v-ca8af87f"]]), ox = { key: 0 }, ux = { key: 1 }, cx = { class: "discovery-header" }, dx = {
+}, l3 = /* @__PURE__ */ Qe(s3, [["__scopeId", "data-v-b75353c6"]]), o3 = { key: 0 }, u3 = { key: 1 }, c3 = { class: "discovery-header" }, d3 = {
   __name: "SegmentManagerModal",
   props: {
     baseUrl: {
@@ -19247,7 +19247,7 @@ const Oh = { class: "d-flex align-items-center mb-30" }, Ph = {
       size: "large"
     }, {
       header: Lt(() => [
-        L.value ? I("", !0) : (h(), y("div", ox, [
+        L.value ? I("", !0) : (h(), y("div", o3, [
           J[1] || (J[1] = p("div", { class: "header" }, [
             p("h4", null, "Segment Manager")
           ], -1)),
@@ -19258,7 +19258,7 @@ const Oh = { class: "d-flex align-items-center mb-30" }, Ph = {
             class: "ml-1"
           }, null, 8, ["modelValue"])
         ])),
-        L.value ? (h(), y("div", ux, [
+        L.value ? (h(), y("div", u3, [
           p("div", {
             onClick: V,
             class: "navigation"
@@ -19269,7 +19269,7 @@ const Oh = { class: "d-flex align-items-center mb-30" }, Ph = {
             }),
             J[2] || (J[2] = p("p", { class: "mt-6" }, " Back to Segment Manager", -1))
           ]),
-          p("div", cx, [
+          p("div", c3, [
             J[3] || (J[3] = p("div", { class: "discovery-header-title" }, [
               p("h6", null, "Segment Manager"),
               p("p", null, "Enriching 1PD audience segments with WPP Open Intelligence")
@@ -19299,16 +19299,16 @@ const Oh = { class: "d-flex align-items-center mb-30" }, Ph = {
           brandId: o.brandId,
           token: o.token
         }, null, 8, ["customSegmentUrl", "tenantId", "brandId", "token"])) : I("", !0),
-        L.value ? (h(), me(lx, { key: 2 })) : I("", !0)
+        L.value ? (h(), me(l3, { key: 2 })) : I("", !0)
       ]),
       _: 1
     }));
   }
-}, bx = /* @__PURE__ */ Qe(dx, [["__scopeId", "data-v-087600d9"]]);
+}, b3 = /* @__PURE__ */ Qe(d3, [["__scopeId", "data-v-087600d9"]]);
 export {
-  bx as BetaSegmentManagerModal,
+  b3 as BetaSegmentManagerModal,
   mg as CustomSegments,
-  lx as ExploreInsights,
+  l3 as ExploreInsights,
   dm as StandardSegments,
   tr as useCustomSegmentStore,
   on as useSegmentManagerStore

@@ -4780,7 +4780,7 @@ const Oh = { class: "d-flex align-items-center mb-30" }, Ph = {
   __name: "PushModal",
   emits: ["close", "insertSegment"],
   setup(o, { emit: C }) {
-    const a = C, S = H([]), g = ["META", "Google", "TikTok", "Snapchat", "LinkedIn"], R = ["Build new campaign", "Update current campaign"], G = ["Display & Video 360", "The Trade Desk"], $ = ["Infosum", "LiveRamp"], O = ["Open Media Studio", "Audience Planner"];
+    const a = C, S = H([]), g = ["META", "Google", "TikTok", "Snapchat", "LinkedIn"], R = ["Build new campaign", "Update current campaign"], G = ["Display & Video 360", "The Trade Desk"], $ = ["Infosum", "LiveRamp"], O = ["Open Media Studio", "Audience Builder"];
     function L() {
       a("close");
     }
@@ -4882,7 +4882,7 @@ const Oh = { class: "d-flex align-items-center mb-30" }, Ph = {
       });
     };
   }
-}, v2 = /* @__PURE__ */ Qe(k2, [["__scopeId", "data-v-fb1686e7"]]), _2 = [
+}, v2 = /* @__PURE__ */ Qe(k2, [["__scopeId", "data-v-44c63bbf"]]), _2 = [
   {
     title: "Dynamics of Royal Canin Maxi Adult Wet Food in Recent Days",
     section: "dynamics",

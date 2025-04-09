@@ -4,12 +4,18 @@
         <div class="segments">
             <div class="segment" v-for="(segment) in displayedSegments" :key="segment.name">
                 <div class="segment-img-wrapper">
-                    <img :src="segment.image" alt="segment" />
+                    <img :src="segment.image"
+                        alt="segment"
+                        :title="getTooltip('Unknown Segment Name')" />
                 </div>
                 <div class="segment-info">
                     <h4>{{ segment.name }}</h4>
-                    <p><span>Reach:</span> {{ segment.reach }}</p>
-                    <p><span>Share:</span> {{ segment.impressions }}</p>
+                    <p><span>Est. Reach:</span> {{ segment.reach }} <CataUiTooltip
+                        class="pl-1"
+                        label="This is the number of people you can potentially reach through paid media platforms who share similar traits with your first-party audience." /></p>
+                    <p><span>Affinity Score: </span> {{ segment.impressions }}<CataUiTooltip
+                        class="pl-1"
+                        label="A score of 158 means this persona is 58% more likely than average to be interested in your brand. It reflects behavioral and interest similarity to your seeded 1PD audience." /></p>
                 </div>
             </div>
         </div>
@@ -40,6 +46,7 @@
 </template>
 
 <script setup>
+    import { CataUiTooltip } from '@catalyst/ui-library';
     import { computed } from 'vue';
 
     const props = defineProps({
@@ -53,12 +60,73 @@
         },
     });
 
+    const coreTraitsMap = {
+        'Sports Enthusiasts': [
+            'High affinity for both mainstream (Football, Basketball, Baseball) and niche sports (Formula 1, MMA, Equestrian, Triathlon)',
+            'Likely to follow live sports, post about games/events, and participate in fantasy leagues or brackets',
+        ],
+
+        'Gaming & E-Sports Fans': [
+            'Deeply immersed in online games and streaming culture',
+            'Active on Twitch, Discord, Reddit, and gaming Twitter/X',
+            'Passionate about competitions and influencers in the gaming ecosystem',
+        ],
+
+        'Social Shoppers & Brand Followers': [
+            'Use social media to discover, evaluate, and shop products',
+            'Follow brands and creators for inspiration',
+            'Tend to amplify content related to lifestyle, fashion, and tech drops',
+        ],
+
+        'Fitness & Wellness Advocates': [
+            'Fitness-focused, often engage in running, gym workouts, challenges',
+            'Highly engaged in motivational and self-improvement content',
+            'Participate in online fitness communities and track progress socially',
+        ],
+
+        'Readers & Intellectual Hobbyists': [
+            'Enjoy quiet hobbies like reading, puzzles, crosswords, and culture',
+            'Likely to be highly engaged in niche or curated online spaces (e.g., Goodreads, BookTok)',
+            'Share reviews, quotes, and thoughtful reflections',
+        ],
+
+        'Food & Home Lovers': [
+            'Passionate about cooking, home décor, and gardening',
+            'Follow food bloggers, recipe creators, and home improvement influencers',
+            'Post about meals, recipes, seasonal décor, and DIY projects',
+        ],
+
+        'Streaming & Entertainment Seekers': [
+            'Always up to date with new releases, binge culture, and celebrity news',
+            'Engage heavily with fandoms (TV shows, music artists, pop culture)',
+            'Create or share reaction memes, fan theories, and reviews',
+        ],
+
+        'Demographic-Based Communities': [
+            'Segments shaped by age, race/ethnicity, gender, and geography',
+            'Vary in cultural expression, social causes, and lifestyle choices',
+            'Participate in demographic-focused celebrations or advocacy',
+        ],
+
+        'Pet & Animal Lovers': [
+            'Deep emotional connection to pets, rescue stories, and animal rights',
+            'Share pet milestones, funny pet content, and adoption campaigns',
+            'Engage with animal shelters, wildlife orgs, and pet brands',
+        ],
+    };
+
+    function getTooltip(segmentName) {
+        const traits = coreTraitsMap[segmentName];
+        if (!traits) return 'No information available';
+        return traits.map((t) => `• ${t}`).join('\n');
+    }
+
     const displayedSegments = computed(() => {
         if (!props.segmentData || !props.segmentData.segments) {
             return [];
         }
         return props.isThumbnail
-            ? props.segmentData.segments.slice(0, 4)
+            ? props.segmentData.segments.slice(0, 5)
             : props.segmentData.segments;
     });
 </script>
@@ -92,7 +160,7 @@ width: 100%;
 }
 
 .segment-img-wrapper {
-width: 100%;  
+width: 100%;
 max-width: 150px;
 height: 120px;
 display: flex;

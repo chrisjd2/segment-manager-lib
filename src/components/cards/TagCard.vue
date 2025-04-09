@@ -3,7 +3,7 @@
         <div class="card-wrapper"
             v-for="(tag, index) in bubbleSkippedTags"
             :key="tag.title + index"
-            :class="{ 'full-width': tag.title.includes('Publishers') }">
+            :class="{ 'full-width': true }">
             <div
                 class="rating-card">
                 <div class="header">
@@ -136,8 +136,6 @@
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 20px;
-    padding: 20px;
-
   }
 
   .card-wrapper {

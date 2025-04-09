@@ -22,6 +22,21 @@
             </div>
             <TagCard :tags="tags || []" :charts="charts || []" v-if="chartList.length === 2" />
         </div>
+        <!-- <div class="chart-section"> -->
+        <div v-if="chartList[0].section === 'Digital Consumption'">
+            <div
+                class="chart-wrapper"
+                :class="{ 'full-width': true }">
+                <div class="chart-title">{{ paidSocial.title }}</div>
+                <CataCoreUiChart
+                    :options="paidSocialChart.options"
+                    :series="paidSocialChart.series"
+                    type="bar"
+                    width="100%"
+                    height="500" />
+            </div>
+            <!-- </div> -->
+        </div>
     </div>
 </template>
 
@@ -393,6 +408,147 @@
         if (len === 3) return 'third-width';
         return 'third-width';
     };
+
+    const paidSocial = {
+        title: 'Top types of social media behaviour',
+        section: 'Digital Consumption',
+        description: 'Top types of social media consumption for audiences of Banfield versus Population',
+        type: 'bar',
+        source: 'WPP Open Intelligence',
+        data: [
+            {
+                name: 'Career Builders',
+                x: '65',
+                y: '50',
+            },
+            {
+                name: 'Social Shoppers',
+                x: '85',
+                y: '60',
+            },
+            {
+                name: 'Social Fashonistas',
+                x: '45',
+                y: '35',
+            },
+            {
+                name: 'Social Gamers',
+                x: '30',
+                y: '40',
+            },
+            {
+                name: 'Scrollers',
+                x: '70',
+                y: '75',
+            },
+            {
+                name: 'Brand Followers',
+                x: '90',
+                y: '55',
+            },
+            {
+                name: 'Lifestyle Followers',
+                x: '75',
+                y: '65',
+            },
+            {
+                name: 'Content Creators',
+                x: '40',
+                y: '30',
+            },
+            {
+                name: 'Influencer Followers',
+                x: '60',
+                y: '50',
+            },
+            {
+                name: 'Celebrity Followers',
+                x: '35',
+                y: '45',
+            },
+            {
+                name: 'Social Sports Fan',
+                x: '25',
+                y: '30',
+            },
+        ],
+    };
+
+    const paidSocialChart = computed(() => ({
+        chartType: 'bar',
+        title: paidSocial.title,
+        section: paidSocial.section,
+        description: paidSocial.description,
+        series: [
+            {
+                name: 'Audience',
+                data: paidSocial.data.map((item) => ({
+                    x: item.name, // e.g. 'Career Builders'
+                    y: Number(item.x), // e.g. 65 (Audience value)
+                    goals: [
+                        {
+                            name: 'Population',
+                            value: Number(item.y), // e.g. 50
+                            strokeWidth: 28,
+                            strokeHeight: 10,
+                            strokeColor: '#775DD0',
+                        },
+                    ],
+                })),
+            },
+        ],
+        options: {
+            chart: {
+                type: 'bar',
+                height: 400,
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    barHeight: '70%',
+                },
+            },
+            dataLabels: {
+                enabled: true,
+                formatter(val, opts) {
+                    const { goals } = opts.w.config.series[opts.seriesIndex].data[opts.dataPointIndex];
+                    if (goals && goals.length) {
+                        return `${val} / ${goals[0].value}`;
+                    }
+                    return val;
+                },
+                style: {
+                    fontSize: '12px',
+                    colors: ['#333'],
+                },
+            },
+            legend: {
+                show: true,
+                showForSingleSeries: true,
+                customLegendItems: ['Audience', 'Population'],
+                markers: {
+                    fillColors: ['#008FFB', '#775DD0'],
+                },
+            },
+            tooltip: {
+                shared: true,
+                intersect: false,
+            },
+            grid: {
+                borderColor: '#E4E4E7',
+                strokeDashArray: 4,
+            },
+            xaxis: {
+                labels: {
+                    style: {
+                        fontSize: '12px',
+                        fontFamily: 'Inter',
+                        colors: '#777',
+                    },
+                },
+            },
+        },
+    }));
 
 </script>
 

@@ -1,8 +1,9 @@
 <template>
     <div class="tag-section">
         <div class="card-wrapper"
+            v-for="(tag, index) in bubbleSkippedTags"
             :key="tag.title + index"
-            :class="{ 'full-width': true }">
+            :class="{ 'full-width': tag.section === 'Owned Intelligence' }">
             <div
                 class="rating-card">
                 <div class="header">
@@ -79,8 +80,8 @@
     };
 
     const props = defineProps({
-        tag: {
-            type: Object,
+        tags: {
+            type: Array,
             required: true,
         },
         charts: {
@@ -90,7 +91,7 @@
     });
 
     const bubbleCharts = computed(() => props.charts.filter((chart) => chart.type === 'bubble'));
-    // const bubbleSkippedTags = computed(() => props.tags);
+    const bubbleSkippedTags = computed(() => props.tags);
 
     onMounted(() => {
         visibleCharts.value = new Array(bubbleCharts.value.length).fill(false);
@@ -141,6 +142,7 @@
   .card-wrapper {
     flex: 1 1 calc(50% - 20px);
     max-width: calc(50% - 20px);
+    margin-bottom: 20px;
     gap: 20px;
     width: 100%;
     justify-content: center;

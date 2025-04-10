@@ -5,7 +5,7 @@
         </h5>
 
         <div class="chart-section">
-            <TagCard :tag="tags[0]" v-if="chartList[0].section === 'Paid Intelligence'" />
+
             <div
                 v-for="(chart, index) in chartList"
                 :key="chart.title + index"
@@ -23,12 +23,14 @@
             </div>
 
         </div>
-        <TagCard :tag="tags[1]" v-if="chartList[0].section === 'Paid Intelligence'" />
+
+        <TagCard :tags="tags.slice(0, 2)" v-if="chartList[0].section === 'Paid Intelligence'" />
+
         <!-- <div class="chart-section"> -->
         <h5 v-if="chartList[0].section === 'Paid Intelligence'" class="chart-section-title my-4">
             {{paidSocial.section}}
         </h5>
-        <div v-if="chartList[0].section === 'Paid Intelligence'" class="mb-3">
+        <div v-if="chartList[0].section === 'Paid Intelligence'" class="pb-4">
             <div
                 ref="paidSocialEl"
                 class="chart-wrapper"
@@ -44,7 +46,10 @@
             </div>
             <!-- </div> -->
         </div>
-        <TagCard :tag="tags[2]" v-if="tags[2].section === 'Owned Intelligence' && chartList[0].section === 'Paid Intelligence'" />
+        <h5 v-if="tags[2].section === 'Owned Intelligence' && chartList[0].section === 'Paid Intelligence'" class="chart-section-title my-4">
+            {{tags[2].section}}
+        </h5>
+        <TagCard :tags="tags.slice(2)" v-if="tags[2].section === 'Owned Intelligence' && chartList[0].section === 'Paid Intelligence'" />
     </div>
 </template>
 
@@ -608,6 +613,7 @@
 .chart-wrapper.half-width {
     flex: 1 1 calc(50% - 20px);
     max-width: calc(50% - 20px);
+    margin-bottom: 20px;
 }
 .chart-wrapper.third-width {
     flex: 1 1 calc(33.333% - 20px);

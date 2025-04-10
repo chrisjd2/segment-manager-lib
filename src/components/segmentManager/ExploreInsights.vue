@@ -163,7 +163,7 @@
             segmentsSection.value = insightData.value.segments[0];
             groupedBySection.value = Object.values(grouped);
 
-            await promiseTimeout(5000);
+            await promiseTimeout(3000);
             loadingInsights.value = false;
         } catch (error) {
             loadingInsights.value = false;

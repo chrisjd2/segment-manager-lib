@@ -73,8 +73,8 @@
                 </div>
             </div>
             <template v-if="insightData">
-                <div v-for="(section, index) in groupedBySection" :key="section?.[0]?.section + index">
-                    <ChartCard :charts="section || []" v-if="section" :tags="insight.tags || []" />
+                <div class="charts-outer-wrapper" v-for="(section, index) in groupedBySection" :key="section?.[0]?.section + index">
+                    <ChartCard :charts="section || []" v-if="section" :tags="insight.tags || []" :paidSocial="insightData.paidSocial" />
                 </div>
             </template>
             <!-- <TagCard :tags="insight.tags || []" :charts="insight.charts || []" /> -->
@@ -263,6 +263,10 @@
   40% { opacity: 1; }
 }
 
+.charts-outer-wrapper {
+    margin-bottom: 20px;
+}
+
 .explore-insights-loader {
     background-color: white;
     display: flex;
@@ -348,6 +352,7 @@
         align-items: flex-start;
         width: 100%;
         margin-top: 20px;
+
     }
     .thumbnail-bar-chart {
         flex: 1;
@@ -357,7 +362,9 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        margin-bottom: 20px;
         background: #fff;
+
     }
 
     .segment-card-row {

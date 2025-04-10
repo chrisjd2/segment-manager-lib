@@ -1,7 +1,6 @@
 <template>
     <div class="tag-section">
         <div class="card-wrapper"
-            v-for="(tag, index) in bubbleSkippedTags"
             :key="tag.title + index"
             :class="{ 'full-width': true }">
             <div
@@ -80,8 +79,8 @@
     };
 
     const props = defineProps({
-        tags: {
-            type: Array,
+        tag: {
+            type: Object,
             required: true,
         },
         charts: {
@@ -91,7 +90,7 @@
     });
 
     const bubbleCharts = computed(() => props.charts.filter((chart) => chart.type === 'bubble'));
-    const bubbleSkippedTags = computed(() => props.tags);
+    // const bubbleSkippedTags = computed(() => props.tags);
 
     onMounted(() => {
         visibleCharts.value = new Array(bubbleCharts.value.length).fill(false);
@@ -136,6 +135,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 20px;
+
   }
 
   .card-wrapper {

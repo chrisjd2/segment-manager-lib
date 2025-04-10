@@ -5,6 +5,7 @@
         </h5>
 
         <div class="chart-section">
+            <TagCard :tag="tags[0]" v-if="chartList[0].section === 'Paid Intelligence'" />
             <div
                 v-for="(chart, index) in chartList"
                 :key="chart.title + index"
@@ -20,21 +21,21 @@
                         :height="chart.chartType === 'bubble' ? '550' : '350'" />
                 </div>
             </div>
-            <h5 class="chart-section-title my-3" v-if="chartList[0].section === 'Digital Consumption'">
-                Paid Intelligence
-            </h5>
-            <TagCard :tags="tags || []" :charts="charts || []" v-if="chartList.length === 2" />
+
         </div>
+        <TagCard :tag="tags[1]" v-if="chartList[0].section === 'Paid Intelligence'" />
         <!-- <div class="chart-section"> -->
-        <h5 v-if="chartList[0].section === 'Digital Consumption'" class="chart-section-title my-3">
-            Earned & Shared Intelligence
+        <h5 v-if="chartList[0].section === 'Paid Intelligence'" class="chart-section-title my-4">
+            {{paidSocial.section}}
         </h5>
-        <div v-if="chartList[0].section === 'Digital Consumption'">
+        <div v-if="chartList[0].section === 'Paid Intelligence'" class="mb-3">
             <div
+                ref="paidSocialEl"
                 class="chart-wrapper"
                 :class="{ 'full-width': true }">
                 <div class="chart-title">{{ paidSocial.title }}</div>
                 <CataCoreUiChart
+                    v-if="showPaidSocial"
                     :options="paidSocialChart.options"
                     :series="paidSocialChart.series"
                     type="bar"
@@ -43,6 +44,7 @@
             </div>
             <!-- </div> -->
         </div>
+        <TagCard :tag="tags[2]" v-if="tags[2].section === 'Owned Intelligence' && chartList[0].section === 'Paid Intelligence'" />
     </div>
 </template>
 
@@ -63,11 +65,17 @@
             type: Array,
             required: true,
         },
+        paidSocial: {
+            type: Object,
+            required: true,
+        },
     });
 
     const visibleCharts = ref([]);
     const chartRefs = ref([]);
     const observers = [];
+    const paidSocialEl = ref(null);
+    const showPaidSocial = ref(false);
 
     const monochromeBaseColors = ['#0A2FFF', '#0068AD', '#0E8677', '#12871C', '#A36F05', '#CC4B00', '#D11534', '#B41880', '#832EEA', '#646C72'];
 
@@ -389,6 +397,18 @@
 
     onMounted(() => {
         visibleCharts.value = new Array(chartList.value.length).fill(false);
+        if (paidSocialEl.value) {
+            useIntersectionObserver(
+                paidSocialEl,
+                ([entry], observerElement) => {
+                    if (entry.isIntersecting) {
+                        showPaidSocial.value = true;
+                        observerElement.disconnect(); // Optional: stop observing after load
+                    }
+                },
+                { threshold: 0.1 },
+            );
+        }
     });
 
     const observeChart = (el, index) => {
@@ -415,72 +435,73 @@
         return 'third-width';
     };
 
-    const paidSocial = {
-        title: 'Top types of social media behaviour',
-        section: 'Digital Consumption',
-        description: 'Top types of social media consumption for audiences of Banfield versus Population',
-        type: 'bar',
-        source: 'WPP Open Intelligence',
-        data: [
-            {
-                name: 'Career Builders',
-                x: '65',
-                y: '50',
-            },
-            {
-                name: 'Social Shoppers',
-                x: '85',
-                y: '60',
-            },
-            {
-                name: 'Social Fashonistas',
-                x: '45',
-                y: '35',
-            },
-            {
-                name: 'Social Gamers',
-                x: '30',
-                y: '40',
-            },
-            {
-                name: 'Scrollers',
-                x: '70',
-                y: '75',
-            },
-            {
-                name: 'Brand Followers',
-                x: '90',
-                y: '55',
-            },
-            {
-                name: 'Lifestyle Followers',
-                x: '75',
-                y: '65',
-            },
-            {
-                name: 'Content Creators',
-                x: '40',
-                y: '30',
-            },
-            {
-                name: 'Influencer Followers',
-                x: '60',
-                y: '50',
-            },
-            {
-                name: 'Celebrity Followers',
-                x: '35',
-                y: '45',
-            },
-            {
-                name: 'Social Sports Fan',
-                x: '25',
-                y: '30',
-            },
-        ],
-    };
+    // const paidSocial = {
+    //     title: 'Top types of social media behaviour',
+    //     section: 'Digital Consumption',
+    //     description: 'Top types of social media consumption for audiences of Banfield versus Population',
+    //     type: 'bar',
+    //     source: 'WPP Open Intelligence',
+    //     data: [
+    //         {
+    //             name: 'Career Builders',
+    //             x: '65',
+    //             y: '50',
+    //         },
+    //         {
+    //             name: 'Social Shoppers',
+    //             x: '85',
+    //             y: '60',
+    //         },
+    //         {
+    //             name: 'Social Fashonistas',
+    //             x: '45',
+    //             y: '35',
+    //         },
+    //         {
+    //             name: 'Social Gamers',
+    //             x: '30',
+    //             y: '40',
+    //         },
+    //         {
+    //             name: 'Scrollers',
+    //             x: '70',
+    //             y: '75',
+    //         },
+    //         {
+    //             name: 'Brand Followers',
+    //             x: '90',
+    //             y: '55',
+    //         },
+    //         {
+    //             name: 'Lifestyle Followers',
+    //             x: '75',
+    //             y: '65',
+    //         },
+    //         {
+    //             name: 'Content Creators',
+    //             x: '40',
+    //             y: '30',
+    //         },
+    //         {
+    //             name: 'Influencer Followers',
+    //             x: '60',
+    //             y: '50',
+    //         },
+    //         {
+    //             name: 'Celebrity Followers',
+    //             x: '35',
+    //             y: '45',
+    //         },
+    //         {
+    //             name: 'Social Sports Fan',
+    //             x: '25',
+    //             y: '30',
+    //         },
+    //     ],
+    // };
 
     const paidSocialChart = computed(() => {
+        const { paidSocial } = props;
         const categories = paidSocial.data.map((item) => item.name);
 
         return {
@@ -562,6 +583,7 @@
     font-size: 20px;
     font-weight: 600;
     margin-top: 16px;
+    padding-left: 5px;
 }
 .chart-section {
     display: flex;

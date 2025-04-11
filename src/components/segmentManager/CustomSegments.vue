@@ -257,6 +257,8 @@
                         "
                         :loading="savingDraft"
                         @click="runQuery()" /> -->
+                </div>
+                <div class="query-builder-footer-buttons">
                     <CataUiButton type="secondary"
                         label="Explore"
                         size="small"
@@ -266,6 +268,7 @@
                             || (!segmentModel.name && tabActive.id === 1)
                             || (!segmentModel.name && tabActive.id === 2)
                             || (segmentModel.conditions.length <= 0 && tabActive.id !== 3)
+                            || !generatedInsights
                         " />
                     <CataUiButton size="small"
                         label="Push to destination"
@@ -380,6 +383,7 @@
     const segmentSaved = ref(false);
     const savingSegment = ref(false);
     const segmentStep = ref(''); // '', 'saving', 'generating', 'done'
+    const generatedInsights = ref(false);
 
     const operatorsQueries = [
         { value: '$and', label: 'and' },
@@ -558,6 +562,7 @@
     }
     async function saveSegment() {
         segmentStep.value = 'saving';
+        generatedInsights.value = false;
         savingSegment.value = true;
 
         const payload = {
@@ -600,6 +605,7 @@
             segmentStep.value = '';
         } finally {
             savingSegment.value = false;
+            generatedInsights.value = true;
         }
     }
 
@@ -1110,9 +1116,9 @@
       border-top: 1px solid #e4e4e4;
       display: flex;
       align-items: center;
-      padding: 20px 10px 14px 10px;
+      justify-content: space-between;
+      padding: 20px 20px 14px 20px;
       background-color: #fff;
-      flex-direction: column;
       position: sticky;
 
       .query-builder-footer-fields {
@@ -1125,6 +1131,14 @@
           width: 300px;
           margin-right: 10px;
         }
+      }
+      .query-builder-footer-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 100%;
+        padding-bottom: 10px;
+
       }
     }
 

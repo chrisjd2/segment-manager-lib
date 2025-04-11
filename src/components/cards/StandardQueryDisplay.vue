@@ -4,18 +4,37 @@
         <div class="query-conditions">
             <h6>QUERY CONDITIONS</h6>
 
-            <div v-for="(condition, index) in queryConditions" :key="index">
-                <div class="condition">
-                    <div class="cell field">{{ condition.field }}</div>
-                    <div class="cell operator">{{ condition.operator }}</div>
-                    <div class="cell value">{{ renderValue(condition) }}</div>
-                    <CataUiButton type="tertiary" icon="bi-arrows-expand" />
+            <div
+                v-for="(group, groupIndex) in query"
+                :key="`group-${groupIndex}`"
+                class="query-group">
+
+                <!-- Loop through each condition in the group -->
+                <div
+                    v-for="(condition, index) in group.conditions"
+                    :key="`condition-${index}`">
+
+                    <!-- Render condition row -->
+                    <div class="condition">
+                        <div class="cell field">{{ condition.field }}</div>
+                        <div class="cell operator">{{ condition.operator }}</div>
+                        <div class="cell value">{{ renderValue(condition) }}</div>
+                        <CataUiButton type="tertiary" icon="bi-arrows-expand" />
+                    </div>
+
+                    <!-- Show logic between conditions in the same group -->
+                    <div
+                        v-if="index < group.conditions.length - 1"
+                        class="query-operator-outer">
+                        <div class="query-operator">{{ group.logic.replace('$', '').toUpperCase() }}</div>
+                    </div>
                 </div>
 
+                <!-- Optional: Show logic between groups -->
                 <div
-                    v-if="queryConditions.length > 1 && index !== queryConditions.length - 1"
+                    v-if="groupIndex < query.length - 1"
                     class="query-operator-outer">
-                    <div class="query-operator"> And</div>
+                    <div class="query-operator">{{ query[groupIndex + 1].logic.replace('$', '').toUpperCase() }}</div>
                 </div>
             </div>
         </div>
@@ -23,7 +42,6 @@
 </template>
 
 <script setup>
-    import { computed } from 'vue';
     import { CataUiButton } from '@catalyst/ui-library';
 
     const props = defineProps({
@@ -33,10 +51,6 @@
         },
     });
 
-    // Ensure reactivity
-    const queryConditions = computed(() => props.query || []);
-
-    // Format date safely
     const formatDate = (date) => {
         try {
             return new Date(date).toISOString().split('T')[0];
@@ -45,7 +59,6 @@
         }
     };
 
-    // Handle display of different value types
     const renderValue = (condition) => {
         const val = condition?.value;
         if (!val) return '-';

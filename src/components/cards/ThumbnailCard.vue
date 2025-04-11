@@ -7,7 +7,7 @@
                 <CataUiTooltip
                     label="The preview is for your external proofing tool." />
             </div>
-            <CataUiButton type="secondary" label="Explore" @click="openExplore()" />
+            <!-- <CataUiButton type="secondary" label="Explore" @click="openExplore()" /> -->
         </div>
         <!-- <div>
             <p>Below you can find the segments that work best with {{ props.selectedSegment.name }}</p>

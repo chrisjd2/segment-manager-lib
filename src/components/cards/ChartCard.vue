@@ -268,7 +268,7 @@
                     plotOptions: { bar: { distributed: false } },
                 };
             } else if (type === 'bar' || type === 'vertical bar' || type === 'vertical bars' || type === 'Vertical bars' || type === 'vertical chart') {
-                if (chart.title === 'Average View of Digital consumption (Daily)') {
+                if (chart.title === 'Digital Media Consumption Index Hourly') {
                     series = [{ name: 'Indexed Consumption', data: values }];
                     dynamicOptions = {
                         xaxis: {

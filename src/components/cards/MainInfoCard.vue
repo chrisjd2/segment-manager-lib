@@ -110,6 +110,7 @@ grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 gap: 16px;
 margin-top: 16px;
 width: 100%;
+justify-items: center;
 }
 
 .segment-img-wrapper {

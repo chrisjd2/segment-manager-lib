@@ -34,7 +34,7 @@
                         <p>Enriching 1PD audience segments with WPP Open Intelligence</p>
                     </div>
 
-                    <CataUiButton label="Go to activation" />
+                    <!-- <CataUiButton label="Go to activation" /> -->
                 </div>
             </div>
         </template>

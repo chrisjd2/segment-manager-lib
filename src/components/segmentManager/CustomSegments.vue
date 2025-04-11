@@ -257,6 +257,16 @@
                         "
                         :loading="savingDraft"
                         @click="runQuery()" /> -->
+                    <CataUiButton type="secondary"
+                        label="Explore"
+                        size="small"
+                        @click="openExplore()"
+                        class="mx-1"
+                        :disabled="!segmentCount
+                            || (!segmentModel.name && tabActive.id === 1)
+                            || (!segmentModel.name && tabActive.id === 2)
+                            || (segmentModel.conditions.length <= 0 && tabActive.id !== 3)
+                        " />
                     <CataUiButton size="small"
                         label="Push to destination"
                         :disabled="!segmentCount
@@ -433,7 +443,39 @@
         emits('showInsightsExplorer', segmentThumbnail.value);
     };
 
-    function convertQueryToReadable(query) {
+    // function convertQueryToReadable(query) {
+    //     const operatorMap = {
+    //         $eq: 'is equal to',
+    //         $neq: 'is not equal to',
+    //         $lt: 'is less than',
+    //         $lte: 'is less than or equal to',
+    //         $gt: 'is greater than',
+    //         $gte: 'is greater than or equal to',
+    //         $in: 'is in',
+    //         $nin: 'is not in',
+    //         $bw: 'begins with',
+    //         $nbw: 'does not begin with',
+    //         $ew: 'ends with',
+    //         $new: 'does not end with',
+    //         $bt: 'is between',
+    //         $nbt: 'is not between',
+    //     };
+
+    //     return query
+    //         .filter((item) => item.statement)
+    //         .map(({ statement, input_type }) => {
+    //             const [field, op, value] = statement;
+
+    //             return {
+    //                 field,
+    //                 operator: operatorMap[op] || op,
+    //                 value,
+    //                 type: input_type,
+    //             };
+    //         });
+    // }
+
+    function convertQueryToReadableWithLogic(conditions) {
         const operatorMap = {
             $eq: 'is equal to',
             $neq: 'is not equal to',
@@ -451,18 +493,38 @@
             $nbt: 'is not between',
         };
 
-        return query
-            .filter((item) => item.statement)
-            .map(({ statement, input_type }) => {
-                const [field, op, value] = statement;
+        let currentLogic = '$and';
 
-                return {
-                    field,
-                    operator: operatorMap[op] || op,
-                    value,
-                    type: input_type,
-                };
-            });
+        return conditions.reduce((acc, item) => {
+            if (item.logic) {
+                currentLogic = item.logic;
+                return acc;
+            }
+
+            if (Array.isArray(item.group)) {
+                const conditionsList = item.group
+                    .filter((entry) => entry.statement)
+                    .map((entry) => {
+                        const [field, op, value] = entry.statement;
+                        return {
+                            field,
+                            operator: operatorMap[op] || op,
+                            value,
+                            type: entry.input_type,
+                        };
+                    });
+
+                return [
+                    ...acc,
+                    {
+                        logic: currentLogic,
+                        conditions: conditionsList,
+                    },
+                ];
+            }
+
+            return acc;
+        }, []);
     }
 
     async function generateInsights(segment) {
@@ -471,6 +533,7 @@
             name: segment.name,
             description: segment.description,
             count: segment.count || segmentCount.value,
+            market: segmentManagerStore.query.demographics.market,
         };
 
         const endpoint = `https://sm-standard-segments-838902823068.europe-west2.run.app/api/v1/segments/insights/${segment.segmentId}`;
@@ -504,7 +567,7 @@
             market: segmentManagerStore.query.demographics.market,
             description: segmentModel.value.description,
             name: segmentModel.value.name,
-            query: convertQueryToReadable(segmentModel.value.conditions[0].group),
+            query: convertQueryToReadableWithLogic(segmentModel.value.conditions),
         };
 
         try {
@@ -588,14 +651,16 @@
     // Not implemented yet
     async function validateQuery() {
         segmentModel.value.conditions.forEach((element) => {
-            element.group.forEach((subQuery) => {
-                if (subQuery.input_type === 'select' && subQuery.statement[2].length > 1 && subQuery.statement[1] === '$eq') {
-                    subQuery.statement[1] = '$in';
-                }
-                if (subQuery.input_type === 'select' && subQuery.statement[2].length > 1 && subQuery.statement[1] === '$neq') {
-                    subQuery.statement[1] = '$nin';
-                }
-            });
+            if (Array.isArray(element.group)) {
+                element?.group.forEach((subQuery) => {
+                    if (subQuery.input_type === 'select' && subQuery.statement[2].length > 1 && subQuery.statement[1] === '$eq') {
+                        subQuery.statement[1] = '$in';
+                    }
+                    if (subQuery.input_type === 'select' && subQuery.statement[2].length > 1 && subQuery.statement[1] === '$neq') {
+                        subQuery.statement[1] = '$nin';
+                    }
+                });
+            }
         });
     }
     async function runQuery() {
@@ -1143,15 +1208,15 @@
             width: 84px;
             min-width: 84px;
 
-            // &::before,
-            // &::after {
-            //   content: "";
-            //   width: 1px;
-            //   height: 25px;
-            //   margin-left: 44px;
-            //   display: block;
-            //   background: #e4e4e4;
-            // }
+            &::before,
+            &::after {
+              content: "";
+              width: 1px;
+              height: 25px;
+              margin-left: 44px;
+              display: block;
+              background: #e4e4e4;
+            }
           }
 
           :deep(.label-placeholder) {

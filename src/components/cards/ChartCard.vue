@@ -254,7 +254,12 @@
     const chartList = computed(() => props.charts
         .filter((chart) => chart.data && chart.data.length > 0)
         .map((chart, index) => {
-            const type = normalizeChartType(jsonToApexChartTypeMap[chart.type] || chart.type);
+            let rawType = chart.type;
+            if (chart.title === 'Digital Media Consumption Index Hourly') {
+                rawType = 'vertical bars';
+            }
+
+            const type = normalizeChartType(jsonToApexChartTypeMap[rawType] || rawType);
             const baseOptions = chartBaseOptionsMap[type] || {};
 
             const categories = chart.data[0]?.label || [];

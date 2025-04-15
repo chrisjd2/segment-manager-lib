@@ -7382,7 +7382,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
           plotOptions: { bar: { distributed: !1 } }
         };
       else if (D === "bar" || D === "vertical bar" || D === "vertical bars" || D === "Vertical bars" || D === "vertical chart")
-        I.title === "Digital Media Consumption Index Hourly" ? (de = [{ name: "Indexed Consumption", data: ce }], q = {
+        I.title === "Digital Media Consumption Index Hourly" || I.title === "Digital Media Consumption Index Daily" ? (de = [{ name: "Indexed Consumption", data: ce }], q = {
           xaxis: {
             categories: xe,
             title: {
@@ -7640,7 +7640,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
       }, null, 8, ["tags"])) : B("", !0)
     ]));
   }
-}, Ng = /* @__PURE__ */ Qe(Wg, [["__scopeId", "data-v-e4db17fa"]]), qg = "5.12.1", zg = 25, Hg = 0, Qg = 100, Kg = 450, Yg = 450, Zg = "*Final5", Jg = 0, Xg = [], jg = [
+}, Ng = /* @__PURE__ */ Qe(Wg, [["__scopeId", "data-v-2761b5b5"]]), qg = "5.12.1", zg = 25, Hg = 0, Qg = 100, Kg = 450, Yg = 450, Zg = "*Final5", Jg = 0, Xg = [], jg = [
   {
     ddd: 0,
     ind: 1,

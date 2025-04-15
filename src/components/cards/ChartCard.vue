@@ -254,12 +254,7 @@
     const chartList = computed(() => props.charts
         .filter((chart) => chart.data && chart.data.length > 0)
         .map((chart, index) => {
-            let rawType = chart.type;
-            if (chart.title === 'Digital Media Consumption Index Hourly') {
-                rawType = 'vertical bars';
-            }
-
-            const type = normalizeChartType(jsonToApexChartTypeMap[rawType] || rawType);
+            const type = normalizeChartType(jsonToApexChartTypeMap[chart.type] || chart.type);
             const baseOptions = chartBaseOptionsMap[type] || {};
 
             const categories = chart.data[0]?.label || [];
@@ -277,7 +272,7 @@
                     plotOptions: { bar: { distributed: false } },
                 };
             } else if (type === 'bar' || type === 'vertical bar' || type === 'vertical bars' || type === 'Vertical bars' || type === 'vertical chart') {
-                if (chart.title === 'Digital Media Consumption Index Hourly') {
+                if (chart.title === 'Digital Media Consumption Index Hourly' || chart.title === 'Digital Media Consumption Index Daily') {
                     series = [{ name: 'Indexed Consumption', data: values }];
                     dynamicOptions = {
                         xaxis: {

@@ -281,6 +281,7 @@
                 </div>
             </div>
         </div>
+        <PushModal v-if="showPushModal" @close="showPushModal = false" />
     </div>
 </template>
 
@@ -304,6 +305,7 @@
     import CustomExploreThumbnail from '@/components/cards/ExploreThumbnail.vue';
     import QueryAttributesList from '@/components/customSegmentComponents/QueryAttributesList.vue';
     import ThumbnailCard from '@/components/cards/ThumbnailCard.vue';
+    import PushModal from '@/components/app/PushModal.vue';
     import FreeForm from './FreeForm.vue';
 
     const props = defineProps({
@@ -384,6 +386,7 @@
     const savingSegment = ref(false);
     const segmentStep = ref(''); // '', 'saving', 'generating', 'done'
     const generatedInsights = ref(false);
+    const showPushModal = ref(false);
 
     const operatorsQueries = [
         { value: '$and', label: 'and' },
@@ -640,15 +643,27 @@
         customSegmentStore.set_ai_generated_query(generatedQuery);
         generatedAiInfo.attrs.forEach((element, index) => {
             if (index === 0) { queryType.value = 'queryGroupDrop'; } else { queryType.value = segmentModel.value.conditions[0].id; }
+            const formattedValue = String(element.value);
+
+            // Start with the main value first
+            const selectorsSet = new Set([formattedValue]);
+
+            // Then add the rest of the options (if any), excluding duplicates
+            if (Array.isArray(element.valueOptions)) {
+                element.valueOptions.forEach((option) => {
+                    selectorsSet.add(String(option));
+                });
+            }
+
             const parsedElement = {
                 payload: {
                     display_name: element.field,
                     input_type: element.input_type,
                     operators: element.operator,
-                    selectors: [],
+                    selectors: Array.from(selectorsSet), // No dups, formatted correctly
                 },
             };
-            parsedElement.payload.selectors.push(element.value);
+
             addNewQuery(parsedElement);
             nextTick();
         });
@@ -732,6 +747,7 @@
         fetchingPlatforms.value = false;
     }
     function addNewQuery(column) {
+        console.log(column)
         const selectedColumn = column.payload ? column.payload : column;
         if (maxFieldCounter.value < customSegmentStore.settings.maxSubQuery) {
             // Parse dropdown options and preselect value from database model if available
@@ -844,6 +860,7 @@
                                    freeForm: customSegmentStore.freeFormQuery };
         }
         emits('insertSegment', segmentModel.value);
+        showPushModal.value = true;
     }
     async function init() {
         await segmentManagerStore.set_token(props.token);

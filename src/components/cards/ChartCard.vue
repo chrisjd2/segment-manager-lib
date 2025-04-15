@@ -12,7 +12,9 @@
                 :ref="el => observeChart(el, index)"
                 :class="['chart-wrapper', getWidthClass(index)]">
                 <div v-if="visibleCharts[index]">
-                    <div class="chart-title">{{ chart.title }}</div>
+                    <div class="chart-title">{{ chart.title === 'Digital Media Consumption Index Weekly'
+                        ? 'Digital Media Consumption Annual View'
+                        : chart.title }}</div>
                     <CataCoreUiChart
                         :options="chart.options"
                         :series="chart.series"
@@ -204,7 +206,9 @@
         return {
             section: chart.section,
             chartType: type,
-            title: chart.title,
+            title: chart.title === 'Digital Media Consumption Index Weekly'
+                ? 'Digital Media Consumption Annual View'
+                : chart.title,
             series,
             options: {
                 ...baseOptions,

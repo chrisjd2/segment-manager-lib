@@ -10,12 +10,12 @@
                 </div>
                 <div class="segment-info">
                     <h4>{{ segment.name }}</h4>
-                    <p><span>Est. Reach:</span> {{ segment.reach }} <CataUiTooltip
+                    <p><span>Est. Reach:</span> {{ formatReach(segment.reach) }} <CataUiTooltip
                         class="pl-1"
                         label="This is the number of people you can potentially reach through paid media platforms who share similar traits with your first-party audience." /></p>
                     <p><span>Affinity Score: </span> {{ segment.affinityScore }}<CataUiTooltip
                         class="pl-1"
-                        label="A score of 158 means this persona is 58% more likely than average to be interested in your brand. It reflects behavioral and interest similarity to your seeded 1PD audience." /></p>
+                        label="This score indicates how much more likely this persona is to be interested in your brand compared to the average person. It reflects behavioral and interest similarity to your 1PD seed audience" /></p>
                 </div>
             </div>
         </div>
@@ -82,6 +82,14 @@
             ? props.segmentData.segments.slice(0, 5)
             : props.segmentData.segments;
     });
+
+    function formatReach(reach) {
+        if (typeof reach === 'string' && reach.includes(',')) {
+            return reach; // already formatted
+        }
+        const num = typeof reach === 'string' ? parseInt(reach, 10) : reach;
+        return Number.isNaN(num) ? reach : num.toLocaleString();
+    }
 </script>
 
 <style lang="scss" scoped>

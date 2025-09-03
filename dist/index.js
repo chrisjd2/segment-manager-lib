@@ -6627,7 +6627,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
         query: bt(x.value.conditions)
       };
       try {
-        const A = await fetch("https://sm-standard-segments-838902823068.europe-west2.run.app/api/v1/segments", {
+        const A = await fetch("https://sm-standard-segments-838902823068.europe-west1.run.app/api/v1/segments", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -7159,7 +7159,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
       })) : B("", !0)
     ]));
   }
-}, _g = /* @__PURE__ */ Qe(vg, [["__scopeId", "data-v-0695c3a9"]]), bg = { class: "tag-section" }, Eg = { class: "rating-card" }, Sg = { class: "header" }, Ag = { class: "title" }, wg = { class: "pb-2" }, Cg = { class: "content-wrapper" }, Tg = { class: "content" }, Dg = { class: "publishers" }, Ig = { class: "publisher-item" }, Lg = { class: "ratings" }, Bg = { class: "rating" }, Fg = {
+}, _g = /* @__PURE__ */ Qe(vg, [["__scopeId", "data-v-e7f73e0b"]]), bg = { class: "tag-section" }, Eg = { class: "rating-card" }, Sg = { class: "header" }, Ag = { class: "title" }, wg = { class: "pb-2" }, Cg = { class: "content-wrapper" }, Tg = { class: "content" }, Dg = { class: "publishers" }, Ig = { class: "publisher-item" }, Lg = { class: "ratings" }, Bg = { class: "rating" }, Fg = {
   __name: "TagCard",
   props: {
     tags: {
@@ -19480,7 +19480,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
       _: 1
     }));
   }
-}, I3 = /* @__PURE__ */ Qe(k3, [["__scopeId", "data-v-493dc2a7"]]);
+}, I3 = /* @__PURE__ */ Qe(k3, [["__scopeId", "data-v-2eb29fb1"]]);
 export {
   I3 as BetaSegmentManagerModal,
   _g as CustomSegments,

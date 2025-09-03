@@ -579,7 +579,7 @@
         };
 
         try {
-            const res = await fetch('https://sm-standard-segments-838902823068.europe-west2.run.app/api/v1/segments', {
+            const res = await fetch('https://sm-standard-segments-838902823068.europe-west1.run.app/api/v1/segments', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

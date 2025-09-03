@@ -59,7 +59,7 @@
             <ExploreInsights v-if="showExplorer" />
 
         </template>
-    </CataUiModal>
+    </CataUiModal> 
 </template>
 
 <script setup>

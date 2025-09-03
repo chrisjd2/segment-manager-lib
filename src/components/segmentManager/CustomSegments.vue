@@ -66,7 +66,7 @@
                                 icon="bi-caret-right"
                                 class="run-query-button"
                                 type="transparent"
-                                label="Run Query"
+                                label="Run Querys"
                                 :disabled="!platform || !location"
                                 :loading="savingDraft"
                                 @click="runQuery()" />
@@ -75,7 +75,7 @@
                                 class="run-query-button ml-10"
                                 type="secondary"
                                 size="small"
-                                label="Save Query"
+                                label="Save Querys"
                                 :disabled="!segmentModel.name || !segmentModel.description || !segmentCount || segmentSaved"
                                 :loading="savingSegment"
                                 @click="saveSegment()" />

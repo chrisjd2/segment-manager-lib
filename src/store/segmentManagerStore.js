@@ -4,7 +4,7 @@ import getters from './_getters';
 
 export const useSegmentManagerStore = defineStore('segmentManagerStore', {
     state: () => ({
-        baseUrl: 'https://sm-standard-segments-838902823068.europe-west2.run.app',
+        baseUrl: 'https://sm-standard-segments-838902823068.europe-west1.run.app',
         applicationType: '',
         tenantId: '',
         brandId: '3',

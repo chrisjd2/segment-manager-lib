@@ -398,7 +398,7 @@ const hh = () => ci.get("/appConfig.json").then((o) => o.data).catch((o) => {
   }
 }, on = k0("segmentManagerStore", {
   state: () => ({
-    baseUrl: "https://sm-standard-segments-838902823068.europe-west2.run.app",
+    baseUrl: "https://sm-standard-segments-838902823068.europe-west1.run.app",
     applicationType: "",
     tenantId: "",
     brandId: "3",
@@ -5631,7 +5631,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
   __name: "StandardSegments",
   props: {
     baseUrl: {
-      default: "https://sm-standard-segments-838902823068.europe-west2.run.app",
+      default: "https://sm-standard-segments-838902823068.europe-west1.run.app",
       type: String,
       required: !0
     },
@@ -6103,7 +6103,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
       })) : B("", !0)
     ], 64));
   }
-}, gm = /* @__PURE__ */ Qe(mm, [["__scopeId", "data-v-ee51002a"]]), xm = { class: "feedback-title-wrapper" }, ym = { class: "title" }, km = { class: "feedback-text" }, vm = {
+}, gm = /* @__PURE__ */ Qe(mm, [["__scopeId", "data-v-4765dd48"]]), xm = { class: "feedback-title-wrapper" }, ym = { class: "title" }, km = { class: "feedback-text" }, vm = {
   __name: "AiQueryFeedback",
   props: {
     feedback: {
@@ -6467,7 +6467,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
   props: {
     segment: Object,
     customSegmentUrl: {
-      default: "https://sm-standard-segments-838902823068.europe-west2.run.app",
+      default: "https://sm-standard-segments-838902823068.europe-west1.run.app",
       type: String,
       required: !0
     },
@@ -6599,7 +6599,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
         description: X.description,
         count: X.count || H.value,
         market: b.query.demographics.market
-      }, W = `https://sm-standard-segments-838902823068.europe-west2.run.app/api/v1/segments/insights/${X.segmentId}`, be = await fetch(W, {
+      }, W = `https://sm-standard-segments-838902823068.europe-west1.run.app/api/v1/segments/insights/${X.segmentId}`, be = await fetch(W, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -7159,7 +7159,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
       })) : B("", !0)
     ]));
   }
-}, _g = /* @__PURE__ */ Qe(vg, [["__scopeId", "data-v-e7f73e0b"]]), bg = { class: "tag-section" }, Eg = { class: "rating-card" }, Sg = { class: "header" }, Ag = { class: "title" }, wg = { class: "pb-2" }, Cg = { class: "content-wrapper" }, Tg = { class: "content" }, Dg = { class: "publishers" }, Ig = { class: "publisher-item" }, Lg = { class: "ratings" }, Bg = { class: "rating" }, Fg = {
+}, _g = /* @__PURE__ */ Qe(vg, [["__scopeId", "data-v-6be8cfb2"]]), bg = { class: "tag-section" }, Eg = { class: "rating-card" }, Sg = { class: "header" }, Ag = { class: "title" }, wg = { class: "pb-2" }, Cg = { class: "content-wrapper" }, Tg = { class: "content" }, Dg = { class: "publishers" }, Ig = { class: "publisher-item" }, Lg = { class: "ratings" }, Bg = { class: "rating" }, Fg = {
   __name: "TagCard",
   props: {
     tags: {
@@ -19219,7 +19219,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
         try {
           G.value = !0;
           const pe = await ci.get(
-            `https://sm-standard-segments-838902823068.europe-west2.run.app/api/v1/segments/insights/${m != null && m.segmentId ? m == null ? void 0 : m.segmentId : (I = on.get_selectedSegment) == null ? void 0 : I.segmentId}`,
+            `https://sm-standard-segments-838902823068.europe-west1.run.app/api/v1/segments/insights/${m != null && m.segmentId ? m == null ? void 0 : m.segmentId : (I = on.get_selectedSegment) == null ? void 0 : I.segmentId}`,
             {
               headers: {
                 Authorization: `Bearer ${b.token}`,
@@ -19372,12 +19372,12 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
       ], 64);
     };
   }
-}, g3 = /* @__PURE__ */ Qe(m3, [["__scopeId", "data-v-c29004a9"]]), x3 = { key: 0 }, y3 = { key: 1 }, k3 = {
+}, g3 = /* @__PURE__ */ Qe(m3, [["__scopeId", "data-v-f49d0dc0"]]), x3 = { key: 0 }, y3 = { key: 1 }, k3 = {
   __name: "SegmentManagerModal",
   props: {
     baseUrl: {
       type: String,
-      default: "https://sm-standard-segments-838902823068.europe-west2.run.app"
+      default: "https://sm-standard-segments-838902823068.europe-west1.run.app"
     },
     customSegmentUrl: {
       type: String
@@ -19480,7 +19480,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
       _: 1
     }));
   }
-}, I3 = /* @__PURE__ */ Qe(k3, [["__scopeId", "data-v-2eb29fb1"]]);
+}, I3 = /* @__PURE__ */ Qe(k3, [["__scopeId", "data-v-59b52212"]]);
 export {
   I3 as BetaSegmentManagerModal,
   _g as CustomSegments,

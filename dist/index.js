@@ -6917,7 +6917,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
                   icon: "bi-caret-right",
                   class: "run-query-button",
                   type: "transparent",
-                  label: "Run Query",
+                  label: "Run Querys",
                   disabled: !K.value || !G.value,
                   loading: de.value,
                   onClick: A[8] || (A[8] = (W) => dn())
@@ -6926,7 +6926,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
                   class: "run-query-button ml-10",
                   type: "secondary",
                   size: "small",
-                  label: "Save Query",
+                  label: "Save Querys",
                   disabled: !x.value.name || !x.value.description || !H.value || ke.value,
                   loading: Be.value,
                   onClick: A[9] || (A[9] = (W) => Et())
@@ -7159,7 +7159,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
       })) : B("", !0)
     ]));
   }
-}, _g = /* @__PURE__ */ Qe(vg, [["__scopeId", "data-v-6be8cfb2"]]), bg = { class: "tag-section" }, Eg = { class: "rating-card" }, Sg = { class: "header" }, Ag = { class: "title" }, wg = { class: "pb-2" }, Cg = { class: "content-wrapper" }, Tg = { class: "content" }, Dg = { class: "publishers" }, Ig = { class: "publisher-item" }, Lg = { class: "ratings" }, Bg = { class: "rating" }, Fg = {
+}, _g = /* @__PURE__ */ Qe(vg, [["__scopeId", "data-v-24c60a70"]]), bg = { class: "tag-section" }, Eg = { class: "rating-card" }, Sg = { class: "header" }, Ag = { class: "title" }, wg = { class: "pb-2" }, Cg = { class: "content-wrapper" }, Tg = { class: "content" }, Dg = { class: "publishers" }, Ig = { class: "publisher-item" }, Lg = { class: "ratings" }, Bg = { class: "rating" }, Fg = {
   __name: "TagCard",
   props: {
     tags: {

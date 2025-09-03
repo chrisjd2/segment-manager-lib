@@ -78,7 +78,7 @@
     const props = defineProps({
         baseUrl: {
             type: String,
-            default: 'https://sm-standard-segments-838902823068.europe-west2.run.app',
+            default: 'https://sm-standard-segments-838902823068.europe-west1.run.app',
         },
         customSegmentUrl: {
             type: String,

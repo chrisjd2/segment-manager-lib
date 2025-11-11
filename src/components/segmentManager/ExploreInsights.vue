@@ -1,83 +1,93 @@
 <template>
-    <div v-if="loadingInsights" class="explore-insights-loader">
-        <LottieAnimation
-            height="40vh"
-            ref="anim"
-            :animation-data="loaderAnimation"
-            :loop="true"
-            :auto-play="true"
-            :speed="1" />
-        <h6>Generating Open Intelligence Insights<span class="dot-animate">
-            <span>.</span><span>.</span><span>.</span>
-        </span></h6>
+    <div v-if="showLookerEmbed" class="explore-insights-wrapper" style="width:100%; height:100%;">
+        <iframe
+            src='https://lookerstudio.google.com/embed/reporting/25d1a942-d229-4f79-b3d2-4179fe189479/page/HZZdF?params={"ds3.ou":"all","ds3.segment_id":"0f04a842-ce62-4aa4-a978-79ea1b3e2992"}'
+            style="border:0; width:100%; height:90vh;"
+            allowfullscreen>
+        </iframe>
     </div>
-    <div v-if="!loadingInsights" class="explore-insights-wrapper">
+    <div v-else>
+        <div v-if="loadingInsights" class="explore-insights-loader">
+            <LottieAnimation
+                height="40vh"
+                ref="anim"
+                :animation-data="loaderAnimation"
+                :loop="true"
+                :auto-play="true"
+                :speed="1" />
+            <h6>Generating Open Intelligence Insights<span class="dot-animate">
+                <span>.</span><span>.</span><span>.</span>
+            </span></h6>
+        </div>
 
-        <div class="explore-insights">
-            <h6 class="explore-insights-subtitle">
-                <div class="d-flex flex-column">
-                    <div class="mb-2">
-                        <span class="pd-segment-title">1PD Segment:</span>{{ selectedSegment?.name || 'Segment Overview' }}
+        <div v-if="!loadingInsights" class="explore-insights-wrapper">
+
+            <div class="explore-insights">
+                <h6 class="explore-insights-subtitle">
+                    <div class="d-flex flex-column">
+                        <div class="mb-2">
+                            <span class="pd-segment-title">1PD Segment:</span>{{ selectedSegment?.name || 'Segment Overview' }}
+                        </div>
+                        <div class="pd-segment-title-details"><strong>Count:</strong> {{ formatCount(selectedSegment?.count) }}</div>
+                        <div class="pd-segment-title-details"><strong>Description:</strong>  {{ selectedSegment?.description }}</div>
                     </div>
-                    <div class="pd-segment-title-details"><strong>Count:</strong> {{ formatCount(selectedSegment?.count) }}</div>
-                    <div class="pd-segment-title-details"><strong>Description:</strong>  {{ selectedSegment?.description }}</div>
-                </div>
-                <span class="logo-wrapper">
-                    <span>Enrichment Source:</span>
-                    <img
-                        src="https://storage.googleapis.com/segments-manager/images/Asset%201.png"
-                        alt="logo"
-                        width="120" />
-                </span>
-            </h6>
-            <div v-if="insightData">
-                <!-- <h3 class="cooccurrence-title">Behavioural Segment Groups with highest Affinity</h3>
-                <p class="cooccurrence-description">These segments exhibit distinct patterns in engagement and loyalty. Their preferences and actions provide valuable insights for optimizing campaigns and enhancing brand connections.</p> -->
-                <div class="thumbnail-card">
+                    <span class="logo-wrapper">
+                        <span>Enrichment Source:</span>
+                        <img
+                            src="https://storage.googleapis.com/segments-manager/images/Asset%201.png"
+                            alt="logo"
+                            width="120" />
+                    </span>
+                </h6>
+                <div v-if="insightData">
+                    <!-- <h3 class="cooccurrence-title">Behavioural Segment Groups with highest Affinity</h3>
+                    <p class="cooccurrence-description">These segments exhibit distinct patterns in engagement and loyalty. Their preferences and actions provide valuable insights for optimizing campaigns and enhancing brand connections.</p> -->
+                    <div class="thumbnail-card">
 
-                    <div class="thumbnail-segment-cards">
-                        <div class="segment-card-row">
-                            <MainInfoCard
+                        <div class="thumbnail-segment-cards">
+                            <div class="segment-card-row">
+                                <MainInfoCard
 
-                                :key="index"
-                                :segment-data="segmentsSection"
-                                :is-thumbnail="true" />
-                            <!-- <div
-                                v-for="(segment, index) in mainSegments"
-                                :key="index"
-                                class="segment-card">
-                                <img :src="segment.image" alt="segment" class="segment-img" /> -->
-                            <!-- <div class="segment-card-content">
-                                    <h4 class="segment-title">{{ segment.name }}</h4>
-                                    <p class="segment-detail">Reach: {{ segment.reach }}</p>
-                                    <p class="segment-detail">Impressions: {{ segment.impressions }}</p>
-                                </div> -->
-                            <!-- </div>
-                        </div> -->
-                        <!--
-                        <div class="segment-metrics-card">
-                            <div class="segment-meta-box">
-                                <div class="meta-item">
-                                    <div class="meta-title">Affinity score</div>
-                                    <div class="meta-value">{{ combinedAffinityScore }}</div>
-                                </div>
-                                <div class="meta-item">
-                                    <div class="meta-title">Expected Reach</div>
-                                    <div class="meta-value">{{ combinedReach }}</div>
+                                    :key="index"
+                                    :segment-data="segmentsSection"
+                                    :is-thumbnail="true" />
+                                <!-- <div
+                                    v-for="(segment, index) in mainSegments"
+                                    :key="index"
+                                    class="segment-card">
+                                    <img :src="segment.image" alt="segment" class="segment-img" /> -->
+                                <!-- <div class="segment-card-content">
+                                        <h4 class="segment-title">{{ segment.name }}</h4>
+                                        <p class="segment-detail">Reach: {{ segment.reach }}</p>
+                                        <p class="segment-detail">Impressions: {{ segment.impressions }}</p>
+                                    </div> -->
+                                <!-- </div>
+                            </div> -->
+                            <!--
+                            <div class="segment-metrics-card">
+                                <div class="segment-meta-box">
+                                    <div class="meta-item">
+                                        <div class="meta-title">Affinity score</div>
+                                        <div class="meta-value">{{ combinedAffinityScore }}</div>
+                                    </div>
+                                    <div class="meta-item">
+                                        <div class="meta-title">Expected Reach</div>
+                                        <div class="meta-value">{{ combinedReach }}</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div> -->
+                        </div> -->
+                            </div>
                         </div>
                     </div>
                 </div>
+                <template v-if="insightData">
+                    <div class="charts-outer-wrapper" v-for="(section, index) in groupedBySection" :key="section?.[0]?.section + index">
+                        <ChartCard :charts="section || []" v-if="section" :tags="insight.tags || []" :paidSocial="insightData.paidSocial" />
+                    </div>
+                </template>
+                <!-- <TagCard :tags="insight.tags || []" :charts="insight.charts || []" /> -->
             </div>
-            <template v-if="insightData">
-                <div class="charts-outer-wrapper" v-for="(section, index) in groupedBySection" :key="section?.[0]?.section + index">
-                    <ChartCard :charts="section || []" v-if="section" :tags="insight.tags || []" :paidSocial="insightData.paidSocial" />
-                </div>
-            </template>
-            <!-- <TagCard :tags="insight.tags || []" :charts="insight.charts || []" /> -->
         </div>
     </div>
 </template>
@@ -177,6 +187,8 @@
             emits(apiError);
         }
     });
+
+    const showLookerEmbed = computed(() => segmentManagerStore.tenantId === '3d28abf8-b549-4535-9ccd-51f0f0fd2363');
 
     const chartOptions = computed(() => ({
         chart: {

@@ -15,7 +15,7 @@
                 :loop="true"
                 :auto-play="true"
                 :speed="1" />
-            <h6>Generating Open Intelligence Insights<span class="dot-animate">
+            <h6>Generating Open Intelligence Insights ggggggggggggggggggggg<span class="dot-animate">
                 <span>.</span><span>.</span><span>.</span>
             </span></h6>
         </div>

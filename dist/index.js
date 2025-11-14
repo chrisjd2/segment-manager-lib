@@ -19318,7 +19318,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
             speed: 1
           }, null, 8, ["animation-data"]),
           A[1] || (A[1] = f("h6", null, [
-            nt("Generating Open Intelligence Insights ggggggggggggggggggggg"),
+            nt("Generating Open Intelligence Insights"),
             f("span", { class: "dot-animate" }, [
               f("span", null, "."),
               f("span", null, "."),
@@ -19352,7 +19352,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
                 })
               ], -1))
             ]),
-            T.value ? (h(), y("div", p3, [
+            T.value && J.value.length > 0 ? (h(), y("div", p3, [
               f("div", h3, [
                 f("div", m3, [
                   f("div", g3, [
@@ -19384,7 +19384,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
       ]));
     };
   }
-}, y3 = /* @__PURE__ */ Qe(x3, [["__scopeId", "data-v-1b16f7f8"]]), k3 = { key: 0 }, v3 = { key: 1 }, _3 = {
+}, y3 = /* @__PURE__ */ Qe(x3, [["__scopeId", "data-v-15a176d2"]]), k3 = { key: 0 }, v3 = { key: 1 }, _3 = {
   __name: "SegmentManagerModal",
   props: {
     baseUrl: {

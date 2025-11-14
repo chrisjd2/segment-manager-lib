@@ -15,7 +15,7 @@
                 :loop="true"
                 :auto-play="true"
                 :speed="1" />
-            <h6>Generating Open Intelligence Insights ggggggggggggggggggggg<span class="dot-animate">
+            <h6>Generating Open Intelligence Insights<span class="dot-animate">
                 <span>.</span><span>.</span><span>.</span>
             </span></h6>
         </div>
@@ -39,7 +39,7 @@
                             width="120" />
                     </span>
                 </h6>
-                <div v-if="insightData">
+                <div v-if="insightData && segmentsSection.length > 0">
                     <!-- <h3 class="cooccurrence-title">Behavioural Segment Groups with highest Affinity</h3>
                     <p class="cooccurrence-description">These segments exhibit distinct patterns in engagement and loyalty. Their preferences and actions provide valuable insights for optimizing campaigns and enhancing brand connections.</p> -->
                     <div class="thumbnail-card">
@@ -47,7 +47,6 @@
                         <div class="thumbnail-segment-cards">
                             <div class="segment-card-row">
                                 <MainInfoCard
-
                                     :key="index"
                                     :segment-data="segmentsSection"
                                     :is-thumbnail="true" />

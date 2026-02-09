@@ -169,7 +169,7 @@
                 <div>
                     <!-- <CataUiButton icon="bi-x-lg" class="deselect-button" type="secondary" label="Deselect" @click="deselectSegment()" /> -->
                     <!-- <CataUiButton type="primary" label="Insert" @click="insertSegment()" /> -->
-                    <CataUiButton type="secondary" label="Explore" @click="openExplore()" class="mr-2" />
+                    <CataUiButton v-if="!isRestrictedTenant" type="secondary" label="Explore" @click="openExplore()" class="mr-2" />
                     <CataUiButton type="delete" label="Delete" @click="deleteSegment()" class="mr-2 redButton" />
                     <CataUiButton type="primary" label="Push to destination" @click="pushToDestination()" />
                 </div>
@@ -462,6 +462,11 @@
     const sortColumn = ref({
         sortColumn: 'name',
         sortOrder: 1,
+    });
+
+    const isRestrictedTenant = computed(() => {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('tenantId') === '3d28abf8-b549-4535-9ccd-51f0f0fd2371';
     });
 
     function openExplore() {

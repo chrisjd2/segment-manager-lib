@@ -187,7 +187,7 @@
         }
     });
 
-    const showLookerEmbed = computed(() => segmentManagerStore.tenantId === '3d28abf8-b549-4535-9ccd-51f0f0fd2363');
+    const showLookerEmbed = computed(() => segmentManagerStore.tenantId === '3d28abf8-b549-4535-9ccd-51f0f0fd2000');
 
     const chartOptions = computed(() => ({
         chart: {

@@ -19252,7 +19252,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
           a(xe);
         }
     });
-    const Y = Le(() => b.tenantId === "3d28abf8-b549-4535-9ccd-51f0f0fd2363");
+    const Y = Le(() => b.tenantId === "3d28abf8-b549-4535-9ccd-51f0f0fd2000");
     Le(() => {
       var D, A, Q;
       return {
@@ -19385,7 +19385,7 @@ const Gh = { class: "d-flex align-items-center mb-30" }, Mh = {
       ]));
     };
   }
-}, y3 = /* @__PURE__ */ Qe(x3, [["__scopeId", "data-v-15a176d2"]]), k3 = { key: 0 }, v3 = { key: 1 }, _3 = {
+}, y3 = /* @__PURE__ */ Qe(x3, [["__scopeId", "data-v-0be41ee7"]]), k3 = { key: 0 }, v3 = { key: 1 }, _3 = {
   __name: "SegmentManagerModal",
   props: {
     baseUrl: {

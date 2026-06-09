@@ -464,9 +464,14 @@
         sortOrder: 1,
     });
 
+    // Tenants for which the "Explore" button must not be rendered.
+    const EXPLORE_RESTRICTED_TENANT_IDS = [
+        '3d28abf8-b549-4535-9ccd-51f0f0fd2371',
+        '3d28abf8-b549-4535-9ccd-51f0f0fd2376',
+    ];
     const isRestrictedTenant = computed(() => {
         const params = new URLSearchParams(window.location.search);
-        return params.get('tenantId') === '3d28abf8-b549-4535-9ccd-51f0f0fd2371';
+        return EXPLORE_RESTRICTED_TENANT_IDS.includes(params.get('tenantId'));
     });
 
     function openExplore() {

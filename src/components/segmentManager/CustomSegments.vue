@@ -259,7 +259,8 @@
                         @click="runQuery()" /> -->
                 </div>
                 <div class="query-builder-footer-buttons">
-                    <CataUiButton type="secondary"
+                    <CataUiButton v-if="!isRestrictedTenant"
+                        type="secondary"
                         label="Explore"
                         size="small"
                         @click="openExplore()"
@@ -286,7 +287,7 @@
 </template>
 
 <script setup>
-    import { ref, watch, onMounted, nextTick } from 'vue';
+    import { ref, watch, onMounted, nextTick, computed } from 'vue';
     import { v4 as uuidv4 } from 'uuid';
     import {
         CataUiInputSelect,
@@ -340,6 +341,16 @@
     const segmentManagerStore = useSegmentManagerStore();
     const customSegmentStore = useCustomSegmentStore();
     const emits = defineEmits(['insertSegment', 'showInsightsExplorer']);
+
+    // Tenants for which the "Explore" button must not be rendered.
+    const EXPLORE_RESTRICTED_TENANT_IDS = [
+        '3d28abf8-b549-4535-9ccd-51f0f0fd2371',
+        '3d28abf8-b549-4535-9ccd-51f0f0fd2376',
+    ];
+    const isRestrictedTenant = computed(() => {
+        const params = new URLSearchParams(window.location.search);
+        return EXPLORE_RESTRICTED_TENANT_IDS.includes(params.get('tenantId'));
+    });
     const anim = ref();
     const feedback = {
         title: 'AI Assumption',

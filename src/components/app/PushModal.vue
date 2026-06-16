@@ -7,8 +7,19 @@
             <h4 class="push-header">Push to destination(s)</h4>
         </template>
         <template #body>
+            <!-- Loading state -->
+            <div v-if="status === 'loading'" class="push-status">
+                <CataUiSpinner size="xlarge" />
+                <p>Pushing audience...</p>
+            </div>
+
+            <!-- Confirmation state -->
+            <div v-else-if="status === 'confirmed'" class="push-status">
+                <p>{{ confirmationMessage }}</p>
+            </div>
+
             <!-- Modal Body -->
-            <div class="modal-body">
+            <div v-else class="modal-body">
                 <!-- Direct Push Section -->
                 <div class="section">
                     <hp>Direct Push / 1:1 audience sync</hp>
@@ -75,19 +86,34 @@
             </div>
         </template>
         <template #footer>
-            <CataUiButton class="mr-2" type="secondary" label="Cancel" @click="closeModal" />
-            <CataUiButton type="primary" label="Push" @click="pushSelection" />
+            <!-- Confirmation footer -->
+            <CataUiButton v-if="status === 'confirmed'" type="primary" label="Ok" @click="closeModal" />
+            <!-- Form footer (hidden while loading) -->
+            <template v-else-if="status === 'form'">
+                <CataUiButton class="mr-2" type="secondary" label="Cancel" @click="closeModal" />
+                <CataUiButton type="primary" label="Push" @click="pushSelection" />
+            </template>
         </template>
     </CataUiModal>
 </template>
 
   <script setup>
-    import { ref } from 'vue';
-    import { CataUiModal, CataUiButton, CataUiInputCheckbox } from '@catalyst/ui-library';
+    import { ref, computed } from 'vue';
+    import { CataUiModal, CataUiButton, CataUiInputCheckbox, CataUiSpinner } from '@catalyst/ui-library';
 
     const emits = defineEmits(['close', 'insertSegment']);
 
     const selectedOptions = ref([]);
+
+    // 'form' -> 'loading' -> 'confirmed'
+    const status = ref('form');
+
+    const confirmationMessage = computed(() => {
+        const destinations = selectedOptions.value.length
+            ? selectedOptions.value.join(', ')
+            : 'the selected destination(s)';
+        return `Audience pushed to ${destinations}`;
+    });
 
     const directPushOptions = ['META', 'Google', 'TikTok', 'Snapchat', 'LinkedIn'];
     const campaignOptions = ['Build new campaign', 'Update current campaign'];
@@ -100,8 +126,12 @@
     }
 
     const pushSelection = () => {
-        emits('insertSegment');
-        closeModal();
+        status.value = 'loading';
+        // Simulate the push to destination(s) before confirming.
+        setTimeout(() => {
+            emits('insertSegment');
+            status.value = 'confirmed';
+        }, 2500);
     };
   </script>
 
@@ -140,6 +170,22 @@
     flex-direction: column;
     gap: 5px;
     margin-top: 15px;
+  }
+
+  .push-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 20px;
+    text-align: center;
+    min-height: 160px;
+  }
+
+  .push-status p {
+    font-size: 16px;
+    margin: 0;
   }
 
   .sections-wrapper {
